@@ -1,0 +1,19 @@
+    .accIcon {
+        fill: rgb(255, 255, 255);
+    }
+    
+    @media(max-width:560px) {
+        .accountIcon {
+            position: relative;
+            left: 1rem;
+            width: 28px!important;
+            top: 0.2rem
+        }
+    }
+    
+    .accountIcon:hover {
+        .accIcon {
+            fill: rgb(4, 4, 4);
+        }
+        cursor:pointer;
+    }

@@ -1,0 +1,17 @@
+.cartColor {
+    /* fill: rgb(255, 255, 255); */
+    fill: rgb(255, 255, 255);
+}
+
+.cartcheck {
+    /* fill: rgb(51, 51, 255); */
+    fill: rgb(0, 0, 255);
+}
+
+@media(max-width:400px) {
+    .cartIcon {
+        position: relative;
+        width: 30px!important;
+        top: 0.2rem
+    }
+}

@@ -1,0 +1,9 @@
+.SearchIcon {
+    fill: rgb(17, 77, 205);
+}
+
+@media(max-width:560px) {
+    .SearchIconM {
+        margin-left: 1rem;
+    }
+}

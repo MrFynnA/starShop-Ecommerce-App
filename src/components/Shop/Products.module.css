@@ -1,0 +1,174 @@
+                .product {
+                    display: flex;
+                    flex-direction: column;
+                    margin-top: 1rem;
+                    width: 100%;
+                }
+                
+                .product h2 {
+                    color: rgb(43, 43, 43);
+                    /* margin: -2rem auto; */
+                    text-align: center;
+                    text-transform: uppercase;
+                    word-spacing: 10px;
+                    font-family: sans-serif;
+                    margin-top: -1rem;
+                    position: relative;
+                    top: 0.5rem
+                }
+                
+                .nosearchFound {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem
+                }
+                
+                .interneterrorMsg {
+                    text-transform: lowercase!important;
+                }
+                
+                .shopAct {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+                
+                .Loading {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    margin-top: 5rem;
+                }
+                
+                .Loading h2 {
+                    font-size: 20px;
+                    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                }
+                
+                .product ul {
+                    display: flex!important;
+                    list-style: none;
+                    width: 100%!important;
+                    justify-content: center;
+                    flex-wrap: wrap!important;
+                    position: relative;
+                    right: 1.1rem
+                    /* align-items: center; */
+                }
+                
+                @media(max-width:840px) {
+                    .product ul {
+                        flex-direction: row!important;
+                    }
+                }
+                
+                .errorMessBox {
+                    border: 5px solid rgb(0, 194, 233);
+                    padding: 2rem;
+                    height: 20rem;
+                    width: 100%;
+                    border-radius: 10px;
+                    border-style: double;
+                    background-color: rgb(255, 255, 255);
+                    margin-right: 2rem;
+                }
+                
+                .errorMessBox button {
+                    margin-top: 1rem;
+                }
+                
+                .errorMessBox h1 {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    color: rgb(28, 27, 27);
+                    font-size: 30px;
+                }
+                
+                @media(max-width:560px) {
+                    .errorMessBox {
+                        margin-right: 2.2rem;
+                        height: 22rem;
+                    }
+                    .errorMessBox h1 {
+                        font-size: 25px;
+                    }
+                    .errorMessBox button {
+                        margin-top: 2rem;
+                    }
+                }
+                
+                @media(max-width: 560px) {
+                    .product h2 {
+                        font-size: 17px;
+                        /* margin-left: 1.6rem; */
+                        word-spacing: 0px !important;
+                        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                    }
+                    .product ul {
+                        position: relative;
+                    }
+                }
+                
+                .noSearchElements {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 1rem;
+                    margin-top: 3rem;
+                }
+                
+                .tryAgainBtn {
+                    font: inherit;
+                    cursor: pointer;
+                    padding: 0.5rem 1.5rem;
+                    border-radius: 6px;
+                    background-color: rgb(38, 38, 38);
+                    color: #ffffff;
+                    border: 1px solid rgb(38, 38, 38);
+                }
+                
+                .tryAgainBtn:hover,
+                .tryAgainBtn:active {
+                    background-color: #000000;
+                    border-color: #000000;
+                    color: white;
+                }
+                
+                .Loading.spin {
+                    animation-name: spin;
+                    animation-duration: 0.8s;
+                    animation-iteration-count: infinite;
+                    animation-timing-function: linear;
+                }
+                
+                @keyframes spin {
+                    from {
+                        transform: rotate(0deg);
+                    }
+                    to {
+                        transform: rotate(360deg);
+                    }
+                }
+                
+                .saleImage {
+                    display: flex;
+                    justify-content: center;
+                }
+                
+                .sliderParent {
+                    min-width: 90%!important;
+                    height: 540px !important;
+                    margin: 0 auto;
+                    /* border: 3px solid rgb(71, 71, 71); */
+                    border-radius: 10px;
+                    background-color: #00000044;
+                    margin-top: -1rem;
+                    /* position: relative; */
+                }
+                
+                @media(max-width:820px) {
+                    .sliderParent {
+                        width: 100%!important;
+                        height: 400px!important;
+                        margin-top: 1rem;
+                    }
+                }

@@ -1,0 +1,8 @@
+@media(min-width:830px) {
+    .leftArrow {
+        width: 40px!important;
+    }
+    .rightArrow {
+        width: 40px!important;
+    }
+}

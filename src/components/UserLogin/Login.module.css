@@ -1,0 +1,24 @@
+.loginTitle {
+    text-align: center;
+    color: rgb(0, 194, 233);
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.loginBox {
+    position: relative;
+    top: 4rem;
+}
+
+.loginBox h2 {
+    position: relative;
+    bottom: 2rem;
+}
+
+@media(max-width:500px) {
+    .loginBox h2 {
+        position: relative;
+        bottom: 2rem;
+        font-size: 15px;
+    }
+}

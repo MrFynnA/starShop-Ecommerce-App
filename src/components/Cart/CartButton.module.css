@@ -1,0 +1,60 @@
+.button {
+    display: flex;
+    flex-direction: row;
+    align-items: center!important;
+    border-style: none;
+    background-color: transparent;
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: 0.4s;
+    font-weight: 600;
+    outline: none;
+    position: relative;
+}
+
+.button:hover,
+.button:active {
+    color: white;
+    background-color: transparent;
+    transition: 0.4s;
+}
+
+[cartamount] {
+    position: relative;
+}
+
+[cartamount]::before {
+    content: attr(cartAmount);
+    background-color: #1c1b1b;
+    /* background-color: #ffffff; */
+    color: rgb(255, 255, 255);
+    /* color: black; */
+    position: absolute;
+    left: 1.95em;
+    bottom: 1.50em;
+    width: 80%;
+    border-radius: 50%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.button span {
+    margin: 0 0.5rem;
+}
+
+.badge {
+    background-color: #ffffff;
+    border-radius: 30px;
+    padding: 0.15rem 1.25rem;
+    color: #1d1d1d;
+}
+
+.cartHeading {
+    position: relative;
+    top: 0.3rem
+}
+
+
+/* .cartIconBtn {
+    display: flex;
+    align-items: center;
+} */

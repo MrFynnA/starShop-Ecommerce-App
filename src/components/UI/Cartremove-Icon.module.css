@@ -1,0 +1,18 @@
+        .removeIcon {
+            fill: rgb(255, 0, 0);
+        }
+        
+        .CartRemoveIcon {
+            margin-left: 1.9rem;
+            border: 1px solid rgb(146, 146, 255);
+            /* width: 40px!important; */
+            padding: 0.3rem;
+            border-radius: 5px;
+            /* background-color: aqua; */
+            transition: 0.3s;
+        }
+        
+        .CartRemoveIcon:hover {
+            background-color: rgb(28, 28, 28);
+            transition: 0.3s;
+        }

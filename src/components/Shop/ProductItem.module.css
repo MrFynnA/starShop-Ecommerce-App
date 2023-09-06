@@ -1,0 +1,99 @@
+.item h3 {
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20rem;
+    height: 100%;
+    transition: 0.3s;
+}
+
+.item:hover {
+    border: 5px dotted rgb(0, 175, 210);
+    /* border: 5px double rgb(210, 137, 0); */
+    transition: 0.3s;
+    cursor: pointer;
+    padding: 1.5rem;
+    border-radius: 6px;
+    margin: 0px;
+}
+
+.remove-p {
+    padding: 0px!important;
+    border-style: none!important;
+}
+
+.desMainAction {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.item header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.price {
+    border-radius: 30px;
+    padding: 0.15rem 1.5rem;
+    background-color: #000000;
+    color: white;
+    font-size: 1rem;
+}
+
+.item p {
+    color: #3a3a3a;
+}
+
+.actions {
+    display: flex;
+    align-items: flex-end;
+}
+
+.desAction {
+    display: flex;
+    flex-direction: column;
+}
+
+.desAction img {
+    margin-top: 2rem;
+    height: 80%;
+    width: 60%;
+    align-items: center;
+}
+
+.cartChecked {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    border: 2px solid rgb(115, 162, 255);
+    padding: 0.5px 0.5rem;
+    border-radius: 5px;
+}
+
+.cartChecked h4 {
+    margin-left: -0.5rem;
+}
+
+.removeCrt {
+    position: relative;
+    left: 2rem
+}
+
+.removeCrt:hover::after {
+    content: 'remove';
+    position: absolute;
+    background-color: orange;
+    bottom: 2.5rem;
+    font-size: 13px;
+    padding: 1px 0.5rem;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+}

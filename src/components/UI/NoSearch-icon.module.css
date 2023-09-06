@@ -1,0 +1,8 @@
+@media(max-width:560px) {
+    .NoSearchIcon {
+        position: relative;
+        left: 0.6rem;
+        /* bottom: 0.6rem; */
+        width: 40px!important;
+    }
+}

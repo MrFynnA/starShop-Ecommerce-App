@@ -1,0 +1,95 @@
+.slider {
+    background-position: center;
+    background-size: cover!important;
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+    margin-top: -2.80rem;
+    transition-duration: 600ms;
+}
+
+.subParent {
+    height: 100%;
+    position: relative;
+}
+
+.sliderArrows {
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+    display: flex;
+    justify-content: space-between!important;
+    z-index: 2;
+}
+
+.fadeSlideLeft {
+    animation: fadeInLeft 0.4s ease-out forwards;
+}
+
+.fadeSlideRight {
+    animation: fadeInRight 0.4s ease-out forwards;
+}
+
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.sliderDots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    bottom: 2.2rem;
+}
+
+.navCircles {
+    font-size: 1.1rem;
+    color: white;
+    cursor: pointer;
+}
+
+.fadeInSlide {
+    /* animation: fadeIn 0.4s ease-out; */
+    /* transition-duration: 600ms; */
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@media(min-width:830px) {
+    .LeftArrow,
+    .RightArrow {
+        display: none;
+        transition: 0.3s;
+    }
+    .subParent:hover .LeftArrow,
+    .RightArrow {
+        display: block;
+        transition-duration: 0.7s!important;
+    }
+}

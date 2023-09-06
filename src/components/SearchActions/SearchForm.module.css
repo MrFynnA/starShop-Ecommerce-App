@@ -1,0 +1,27 @@
+.search-input {
+    border: 1px solid rgb(0, 50, 136);
+    border-radius: 3rem;
+    width: 30rem;
+    background-color: rgb(254, 254, 254);
+    /* background-color: rgb(255, 255, 255); */
+    outline: none;
+    box-shadow: 0px 0px 8px 0px rgb(213, 213, 213);
+    display: flex;
+    justify-content: center;
+}
+
+.search-input input {
+    color: rgb(44, 44, 44);
+    background-color: transparent;
+    outline: none;
+    outline: none;
+    border-style: none;
+    width: 85%;
+    height: 2.5rem;
+    margin-left: 1rem;
+    font-size: 1rem;
+}
+
+.search-input input::placeholder {
+    font-size: 1rem;
+}

@@ -1,0 +1,241 @@
+                        .cart {
+                            position: fixed;
+                            margin-top: 8rem;
+                            background-color: rgb(255, 255, 255);
+                            color: rgb(9, 9, 9);
+                            height: 35rem!important;
+                            /* left: calc(50% - 19.8rem); */
+                            left: calc(50% - 24rem);
+                            z-index: 10;
+                            animation: slide-down 400ms ease-out forwards;
+                        }
+                        
+                         ::-webkit-scrollbar {
+                            width: 5px;
+                        }
+                        
+                        .cartHeadItem {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            padding: 0px 1rem;
+                        }
+                        
+                        .disCount {
+                            margin-left: 1rem!important;
+                            font-style: italic;
+                            color: green;
+                            font-size: 18px!important;
+                            font-weight: 900 !important;
+                            /* font-family: ; */
+                        }
+                        
+                        .cancelledAmount {
+                            /* font-size: 20px; */
+                            font-style: italic;
+                            text-decoration: line-through;
+                            text-decoration-thickness: 1px;
+                        }
+                        
+                         ::-webkit-scrollbar-thumb {
+                            background-color: rgb(121, 121, 121);
+                            border-radius: 20px;
+                        }
+                        
+                        .cart {
+                             ::-webkit-scrollbar-thumb {
+                                background-color: rgb(42, 42, 42);
+                            }
+                        }
+                        
+                        @keyframes slide-down {
+                            from {
+                                opacity: 0;
+                                transform: translateY(-3rem);
+                            }
+                            to {
+                                opacity: 1;
+                                transform: translateY(0);
+                            }
+                        }
+                        
+                        .cart h2 {
+                            font-size: 1.25rem;
+                            margin: 0.5rem 0;
+                        }
+                        
+                        .cart ul {
+                            list-style: none;
+                            padding: 0;
+                            margin: 0;
+                        }
+                        
+                        .CartCover {
+                            margin: 1rem auto;
+                            border-radius: 6px;
+                            background-color: rgb(0, 163, 195);
+                            padding: 2rem;
+                            width: 100%;
+                            overflow-y: scroll;
+                            height: 70%;
+                            overflow-x: hidden;
+                        }
+                        
+                        .CartCover ul {
+                            display: flex;
+                            flex-direction: column;
+                            /* align-items: center; */
+                            /* justify-content: center; */
+                        }
+                        
+                        .noCartMessage {
+                            display: flex;
+                            justify-content: space-around;
+                            align-items: center;
+                            background-color: rgb(0, 133, 160);
+                            padding: 2rem;
+                            border-radius: 10px;
+                            width: 40rem!important;
+                            max-width: 100%!important;
+                            position: relative;
+                            /* left: 1rem; */
+                        }
+                        
+                        .cartHeight {
+                            height: 18rem!important;
+                        }
+                        
+                        .closeBtn {
+                            border-color: rgb(255, 255, 255);
+                            color: white;
+                        }
+                        
+                        .closeBtn:hover {
+                            border-color: rgb(46, 46, 46);
+                            background-color: rgb(46, 46, 46);
+                        }
+                        
+                        .noCartMessage h1 {
+                            color: white;
+                        }
+                        
+                        .disCountonMob {
+                            margin-left: 1rem!important;
+                            font-style: italic;
+                            color: gray;
+                            font-size: 15px!important;
+                            color: green;
+                        }
+                        
+                        @media(width: 414px) {
+                            .cart {
+                                width: 22.8rem!important;
+                            }
+                        }
+                        
+                        @media(max-width: 560px) {
+                            .cart {
+                                left: 5%;
+                                height: 32rem!important;
+                                width: 22.1rem;
+                            }
+                            .CartCover {
+                                /* overflow-x: scroll; */
+                                padding: 0.8rem;
+                                height: 50%;
+                            }
+                            .disCountonMob {
+                                position: relative;
+                                top: 5rem;
+                                text-align: center;
+                                right: 0.5rem;
+                            }
+                            .totalA {
+                                font-size: 15px!important;
+                                font-weight: 900;
+                                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                position: relative;
+                                top: 3px
+                            }
+                            .cartTotal {
+                                flex-direction: column;
+                            }
+                            .disCount {
+                                display: none;
+                            }
+                            .applyDiscBtn {
+                                position: absolute!important;
+                                top: 26rem!important;
+                                left: 6.6rem!important
+                            }
+                            .cancelledAmount {
+                                font-size: 12px;
+                            }
+                            .noCartMessage {
+                                gap: 1rem;
+                            }
+                        }
+                        
+                        .totalCartPrice {
+                            display: flex;
+                            align-items: center;
+                            gap: 0.2rem
+                        }
+                        
+                        @media(min-width:560px) {
+                            .disCountonMob {
+                                display: none;
+                            }
+                        }
+                        
+                        @media(width: 768px) {
+                            .cart {
+                                margin-left: 2rem!important;
+                                margin-top: 8rem!important;
+                            }
+                        }
+                        
+                        @media(width:820px) {
+                            .cart {
+                                margin-top: 8rem!important;
+                                margin-left: 0.8rem!important;
+                            }
+                        }
+                        
+                        .cartTotalItems {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin-top: 1rem;
+                            margin-bottom: 1rem;
+                        }
+                        
+                        .cartTotalItems button {
+                            font-size: 13px;
+                        }
+                        
+                        .cartTotalItems button:disabled,
+                        .cartTotalItems button:disabled:active,
+                        .cartTotalItems button:disabled:hover {
+                            background-color: #ccc;
+                            color: #535353;
+                            border-color: #ccc;
+                            cursor: not-allowed;
+                        }
+                        
+                        .applyDiscBtn {
+                            position: relative;
+                            background-color: rgb(17, 17, 17);
+                            color: white;
+                            border-color: rgb(17, 17, 17);
+                        }
+                        
+                        .applyDiscBtn:hover {
+                            background-color: rgb(28, 28, 28);
+                        }
+                        
+                        .cartTotal {
+                            display: flex;
+                            align-items: center;
+                            gap: 0.2rem
+                        }
