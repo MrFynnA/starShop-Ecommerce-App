@@ -46,6 +46,8 @@
                 font-weight: 700;
                 font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
                 color: white;
+                display: flex;
+                /* font-size: 10px */
             }
             
             @media(max-width: 560px) {

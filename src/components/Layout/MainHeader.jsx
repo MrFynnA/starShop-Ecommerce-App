@@ -8,7 +8,7 @@ const MainHeader = (props) => {
   const navigate=useNavigate()
   return (
     <header className={classes.header}>
-      <div onClick={()=>navigate('')} className={classes.SiteTitle}><h1>StarShopify</h1></div>
+      <div onClick={()=>navigate('')} className={`text-4xl font-bold ${classes.SiteTitle}`}><h1>StarShopify</h1></div>
       <nav>
         <ul>
           <span className={classes.LoginActions}> 

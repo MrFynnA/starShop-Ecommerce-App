@@ -11,7 +11,7 @@ import { Outlet } from 'react-router-dom';
 const Layout = (props) => {
   return (
     <Fragment>
-  <div className={classes.topMessage}>
+  <div className={classes.topMessage} cla>
     <span className={classes.messageTop}><Offertag/> JOIN AMAZING OFFER,  Get 20% OFF 10 and above items purchase</span>
     </div>
       <MainHeader/>
