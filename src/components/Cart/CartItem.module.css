@@ -9,6 +9,13 @@
         @media(max-width:560px) {
             .item {
                 position: relative;
+                /* right: 0.9rem */
+            }
+        }
+        
+        @media(max-width:400px) {
+            .item {
+                position: relative;
                 right: 0.9rem
             }
         }
@@ -41,6 +48,8 @@
             font-weight: bold;
             align-items: center;
             gap: 0.5rem;
+            position: relative;
+            top: 1.2rem;
         }
         
         .price h4 {
@@ -118,7 +127,7 @@
         
         .stockBadge {
             position: relative;
-            bottom: 0.8rem;
+            bottom: 0.5rem;
             right: 0.7rem;
             font-weight: 700;
             color: rgb(255, 255, 255);

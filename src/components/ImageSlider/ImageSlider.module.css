@@ -4,7 +4,7 @@
     height: 100%;
     width: 100%;
     border-radius: 6px;
-    margin-top: -2.80rem;
+    margin-top: -2.48rem;
     transition-duration: 600ms;
 }
 
@@ -91,5 +91,11 @@
     .RightArrow {
         display: block;
         transition-duration: 0.7s!important;
+    }
+}
+
+@media(max-width:830px) {
+    .slider {
+        margin-top: -1.9rem!important;
     }
 }
