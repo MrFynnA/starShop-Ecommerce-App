@@ -45,3 +45,12 @@ button:active {
         width: 100%;
     }
 }
+
+ ::-webkit-scrollbar {
+    width: 5px;
+}
+
+ ::-webkit-scrollbar-thumb {
+    background-color: rgb(121, 121, 121);
+    border-radius: 20px;
+}

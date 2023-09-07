@@ -52,7 +52,7 @@
                     justify-content: center;
                     flex-wrap: wrap!important;
                     position: relative;
-                    right: 1.1rem
+                    /* right: 1.1rem */
                     /* align-items: center; */
                 }
                 
@@ -105,6 +105,7 @@
                     }
                     .product ul {
                         position: relative;
+                        padding: 0 6%;
                     }
                 }
                 

@@ -3,6 +3,10 @@
     font-size: 1.25rem;
 }
 
+.itemMain {
+    border-radius: 1rem;
+}
+
 .item {
     display: flex;
     flex-direction: column;
@@ -54,6 +58,7 @@
 .actions {
     display: flex;
     align-items: flex-end;
+    margin-top: 1rem;
 }
 
 .desAction {
@@ -74,7 +79,7 @@
     gap: 1rem;
     width: 100%;
     border: 2px solid rgb(115, 162, 255);
-    padding: 0.5px 0.5rem;
+    padding: 10px 0.5rem;
     border-radius: 5px;
 }
 

@@ -10,10 +10,6 @@
                             animation: slide-down 400ms ease-out forwards;
                         }
                         
-                         ::-webkit-scrollbar {
-                            width: 5px;
-                        }
-                        
                         .cartHeadItem {
                             display: flex;
                             align-items: center;
@@ -35,11 +31,6 @@
                             font-style: italic;
                             text-decoration: line-through;
                             text-decoration-thickness: 1px;
-                        }
-                        
-                         ::-webkit-scrollbar-thumb {
-                            background-color: rgb(121, 121, 121);
-                            border-radius: 20px;
                         }
                         
                         .cart {

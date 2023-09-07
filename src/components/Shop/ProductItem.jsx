@@ -40,7 +40,7 @@ let actions=<button onClick={sendItems}>Add to Cart</button>
   }
 
   return (
-    <Card>
+    <Card className={classes.itemMain}>
         <div className={`${classes.item} ${particularCartItems.length>0&&classes['remove-p']}`}>
         <header>
           <h3>{title}</h3>
