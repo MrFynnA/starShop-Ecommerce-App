@@ -7,7 +7,7 @@ import useHttps from './hooks/use-https';
 import { useSelector,useDispatch } from 'react-redux';
 import CartContext from './components/CartContext/CartContext';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import LoginSection from './components/UserLogin/Login';
+import AuthSection from './components/UserLogin/Auth';
 import HomeProducts from './components/Shop/Products';
 // import SearchActions from './components/SearchActions/SeachActions';
 let refreshPage=true
@@ -96,7 +96,7 @@ if(cartChanged===true){
       element:<Layout/>,
       children:[
         {index:true, element:<HomeProducts error={error} isLoading={isLoading} onTryAgain={tryAgain} productData={productData}/>},
-        {path:'login', element:<LoginSection/>}
+        {path:'session', element:<AuthSection/>}
       ]
       
     

@@ -11,7 +11,7 @@ import LoadingIcon from '../UI/Loading';
 import ImageSlider from '../ImageSlider/ImageSlider';
 import SalesPic from '../../assets/salePic.png'
 import { sliderImages } from '../ImageSlider/sliderImages/images';
-import LoginSection from '../UserLogin/Login';
+import LoginSection from '../UserLogin/Auth';
 import { Outlet } from 'react-router-dom';
 
 

@@ -70,14 +70,13 @@
                                 background-color: rgb(242, 250, 255);
                                 /* background-color: rgb(216, 241, 255); */
                                 width: 100%;
-                                height: 23rem;
+                                height: 26rem;
                                 border: 5px rgb(0, 194, 233) dashed;
                                 border-radius: 10px;
                                 /* color: aliceblue; */
+                                padding-bottom: 1rem;
                             }
                             
                             .creatAcc {
                                 text-align: center;
-                                position: relative;
-                                top: 1rem;
                             }

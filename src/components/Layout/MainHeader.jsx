@@ -13,7 +13,7 @@ const MainHeader = (props) => {
         <ul>
           <span className={classes.LoginActions}> 
           <li>
-          <Link to={'login'}>LOG IN</Link>
+          <Link to={'session?sess=login'}>LOG IN</Link>
           </li>
         {/* <li>
            <AccountIcon/>
