@@ -11,7 +11,7 @@ return (
         <SubHeader/>
         
     <div className={`${classes.SearchActions} bg-black`}>
-<div className='flex items-center text-white gap-2'>
+<div className='flex items-center text-white gap-2 max-md:text-[10px]'>
 <Link>Featured Products</Link>
 <Link></Link>
 <Link>Top sales</Link>

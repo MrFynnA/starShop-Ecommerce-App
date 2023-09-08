@@ -37,6 +37,12 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+@media(max-width:500px) {
+    [cartamount]::before {
+        bottom: 1.30em;
+    }
+}
+
 .button span {
     margin: 0 0.5rem;
 }

@@ -12,7 +12,7 @@ const LoginSection=()=>{
 return (
     <React.Fragment>
         <div className={classes.loginBox}>
-        <h2 style={{textAlign:'center'}}>Get the coolest Prices of your favorite products on Star Shopify and enjoy AmazinG OFFERS.</h2>
+        <h2 style={{textAlign:'center'}} className="text-2xl font-bold tracking-[spacing]">Get the coolest Prices of your favorite products on Star Shopify and enjoy AmazinG OFFERS.</h2>
         <Card 
         minwidth={'40%'} 
         backgroundcolor={'rgb(0, 137, 164)'} 

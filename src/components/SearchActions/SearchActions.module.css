@@ -9,5 +9,7 @@
 @media(max-width:500px) {
     .SearchActions {
         margin-top: 1rem;
+        gap: 2rem;
+        padding: 0px 1rem;
     }
 }

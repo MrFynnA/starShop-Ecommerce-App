@@ -8,6 +8,7 @@ import { useContext, useEffect } from 'react';
 import BackDrop from '../UI/BackDrop';
 import { CartVisibleAction } from '../store/redStore';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = (props) => {
   const[disCountMessage,setDisCountMessage]=useState('')
@@ -16,6 +17,7 @@ const Cart = (props) => {
   const{cartItems,totalAmount,addDisCount,totalAfterDisCount}=ctx
   const cartVisibility=useSelector(state=>state.visibility.cartVisibility)
   const totalQuantity=cartItems.reduce((i,items)=>i+items.amount,0)
+  const navigate=useNavigate()
   let cartBox=<p><div className={classes.noCartMessage}>
     <h1>No items in cart</h1>
     <button className={classes.closeBtn} onClick={()=>dispatch(CartVisibleAction.closeCart())}>close</button>
@@ -32,6 +34,11 @@ const Cart = (props) => {
       setDisCountMessage('20% OFF Discount Applied')
         addDisCount(totaDiscount)
     }
+  }
+  const goToLogin=()=>{
+    dispatch(CartVisibleAction.closeCart())
+    navigate('/login')
+  
   }
 
   if(cartItems.length>0){
@@ -81,7 +88,7 @@ const Cart = (props) => {
 
   </div>
   {displayCheckOut&& validDisCount &&(<button className={classes.applyDiscBtn} onClick={onApplyDiscount} disabled={disCountMessage!=='' || totalAfterDisCount!==null}>APPLY DISCOUNT</button>)}
-  {displayCheckOut&&<button>CHECKOUT</button>}
+  {displayCheckOut&&<button onClick={goToLogin}>CHECKOUT</button>}
 </div>
  <h2 className={classes.disCountonMob}>{disCountMessage}</h2>
     </CartCover>

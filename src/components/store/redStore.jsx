@@ -53,13 +53,13 @@ const searchReducer=(state,action)=>{
     case searchAction.UPDATETERM:
         return{
         searchValue:action.payload,
-        category:state.category
+        category:null
         }
 
         case searchAction.UPDATECategory:
             return {
                 category:action.payload,
-                searchValue:state.searchValue
+                searchValue:null
             }
         default:return initialSearchTerm
    }
