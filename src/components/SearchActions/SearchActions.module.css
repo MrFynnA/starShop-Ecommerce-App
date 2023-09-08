@@ -1,10 +1,9 @@
 .SearchActions {
-    display: flex;
+    display: flex!important;
     justify-content: space-between;
     align-items: center;
     padding: 0px 3.2rem;
     margin-bottom: 0.1rem;
-    margin-top: 0.1rem;
 }
 
 @media(max-width:500px) {

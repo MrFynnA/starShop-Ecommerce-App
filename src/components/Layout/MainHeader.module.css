@@ -12,6 +12,15 @@
                 z-index: 20;
             }
             
+            .dimHead {
+                text-align: center;
+                text-transform: uppercase;
+                word-spacing: 10px;
+                font-family: sans-serif;
+                position: relative;
+                top: 0.5rem
+            }
+            
             .SiteTitle {
                 cursor: pointer;
             }

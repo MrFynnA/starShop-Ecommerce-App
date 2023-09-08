@@ -7,15 +7,16 @@ import Footer from './MainFooter';
 // import Cart from '../Cart/Cart';
 import Products from '../Shop/Products';
 import { Outlet } from 'react-router-dom';
+import SubHeader from './SubHeader';
 
 const Layout = (props) => {
   return (
     <Fragment>
-  <div className={classes.topMessage} cla>
+  <div className={classes.topMessage}>
     <span className={classes.messageTop}><Offertag/> JOIN AMAZING OFFER,  Get 20% OFF 10 and above items purchase</span>
     </div>
       <MainHeader/>
-      {/* <main>{props.children}</main> */}
+   
       <main>
         
 <Outlet/>

@@ -34,7 +34,8 @@ const cartVisibilitySlice=createSlice({
     }
 })
 const initialSearchTerm={
-    searchValue:null
+    searchValue:null,
+    category:null
 }
 
 // const searchTermSlice=createSlice({
@@ -51,8 +52,15 @@ const searchReducer=(state,action)=>{
    switch(action.type){
     case searchAction.UPDATETERM:
         return{
-        searchValue:action.payload
+        searchValue:action.payload,
+        category:state.category
         }
+
+        case searchAction.UPDATECategory:
+            return {
+                category:action.payload,
+                searchValue:state.searchValue
+            }
         default:return initialSearchTerm
    }
 }
@@ -60,7 +68,9 @@ const searchReducer=(state,action)=>{
 export const CartVisibleAction=cartVisibilitySlice.actions
 export const cartDataAction=cartDataSlice.actions
 export const searchAction={
-    UPDATETERM:'updateTerm'
+    UPDATETERM:'updateTerm',
+    UPDATECategory:"updateCategory"
+
 }
 
 const store=configureStore({

@@ -54,6 +54,7 @@ if(cartChanged===true){
 
 
   const searchTerm=useSelector(state=>state.searchTerm.searchValue)
+  const category=useSelector(state=>state.searchTerm.category)
   // console.log(searchTerm)
   const[productData,setProductData]=useState([])
   // console.log(productData)
@@ -77,12 +78,12 @@ if(cartChanged===true){
   useEffect(()=>{
     const AbortControl=new AbortController()
     const signal=AbortControl.signal
-           itemRequest({url:'https://dummyjson.com/products'},signal,searchTerm)
+           itemRequest({url:'https://dummyjson.com/products'},signal,searchTerm,category)
 
            return()=>{
               AbortControl.abort()
            }
-  },[itemRequest,searchTerm])
+  },[itemRequest,searchTerm,category])
 
   const tryAgain=()=>{
     itemRequest({url:'https://dummyjson.com/products'})

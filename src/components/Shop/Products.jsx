@@ -22,6 +22,7 @@ const Products = (props) => {
   // console.log(itemss)
 
   const searchTerm=useSelector(state=>state.searchTerm.searchValue)
+  const category=useSelector(state=>state.searchTerm.category)
   const ctx=useContext(CartContext)
   const{onAddItem,cartItems,totalAmount}=ctx
   console.log(totalAmount)
@@ -126,13 +127,13 @@ const Products = (props) => {
   
   return (
     <section className={classes.product}>
-      <h2>Shop your favorite products today!</h2>
+   
      {/* <div className={classes.saleImage}> */}
      {/* <img style={{width:'50%'}} src={SalesPic} alt='salespicture'/> */}
      
 {/* <LoginSection/> */}
       <SearchActions/>
-      {(searchTerm==='' || searchTerm===null) && <div className={classes.sliderParent}>
+      {(searchTerm==='' || searchTerm===null) && (category==='' || category===null) && <div className={classes.sliderParent}>
         <ImageSlider slider={sliderImages}/>
       </div>}
      {/* </div>  */}

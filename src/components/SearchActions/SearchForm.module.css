@@ -10,6 +10,12 @@
     justify-content: center;
 }
 
+@media (max-width:540px) {
+    .search-input {
+        margin: 5% 0;
+    }
+}
+
 .search-input input {
     color: rgb(44, 44, 44);
     background-color: transparent;

@@ -6,6 +6,8 @@
     border-radius: 6px;
     margin-top: -2.48rem;
     transition-duration: 600ms;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
 }
 
 .subParent {
