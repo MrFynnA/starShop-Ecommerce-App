@@ -37,7 +37,7 @@ const Cart = (props) => {
   }
   const goToLogin=()=>{
     dispatch(CartVisibleAction.closeCart())
-    navigate('/login')
+    navigate('session?sess=login')
   
   }
 

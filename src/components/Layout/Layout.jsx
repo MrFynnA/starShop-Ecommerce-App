@@ -3,13 +3,21 @@ import MainHeader from './MainHeader';
 import classes from './MainHeader.module.css'
 import Offertag from '../UI/OfferTag';
 import Footer from './MainFooter';
+import { signUpAction } from '../store/slices/SignUpSlice';
 // import { Outlet } from 'react-router-dom';
 // import Cart from '../Cart/Cart';
 import Products from '../Shop/Products';
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import SubHeader from './SubHeader';
+import { useTrigger } from '../trigger';
 
 const Layout = (props) => {
+
+
+
+
+
+
   return (
     <Fragment>
   <div className={classes.topMessage}>

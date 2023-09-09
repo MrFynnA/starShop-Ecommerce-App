@@ -1,5 +1,6 @@
 import {createSlice,configureStore} from '@reduxjs/toolkit'
 import notification from './slices/UI-Slice'
+import SignUpSlice from './slices/SignUpSlice'
 
 const cartDataSlice=createSlice({
     name:'cartDataFromBackEnd',
@@ -18,7 +19,8 @@ const cartDataSlice=createSlice({
         }
     })
 const initialState={
-    cartVisibility:false
+    cartVisibility:false,
+  
 }
 
 const cartVisibilitySlice=createSlice({
@@ -30,7 +32,8 @@ const cartVisibilitySlice=createSlice({
         },
         closeCart(state){
         state.cartVisibility=false
-        }
+        },
+       
     }
 })
 const initialSearchTerm={
@@ -78,7 +81,8 @@ const store=configureStore({
         visibility:cartVisibilitySlice.reducer,
         searchTerm:searchReducer,
         notify:notification,
-        cartData:cartDataSlice.reducer
+        cartData:cartDataSlice.reducer,
+        signUp:SignUpSlice
     }
 })
 

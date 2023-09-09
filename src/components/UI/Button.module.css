@@ -12,3 +12,11 @@
     border-style: none;
     position: relative;
 }
+
+.myButton:disabled,
+.myButton:disabled:hover {
+    background-color: #b0b0b0!important;
+    color: #5f5f5f !important;
+    cursor: not-allowed;
+    /* border: 1px solid #ccc; */
+}

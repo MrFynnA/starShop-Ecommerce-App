@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const MyButton=(props)=>{
 
-    return <button type={props.type || 'button'} disabled={props.disabled} className={styles.myButton}
+    return <button onClick={props.onClick} type={props.type || 'button'} disabled={props.disabled} className={styles.myButton}
     style={{
     color:`${props.textcolor}`,
     backgroundColor:`${props.backgroundcolor}`,
