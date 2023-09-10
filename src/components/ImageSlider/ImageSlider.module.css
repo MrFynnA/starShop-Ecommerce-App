@@ -101,3 +101,10 @@
         margin-top: -1.9rem!important;
     }
 }
+
+@media(max-width:630px) {
+    .slider {
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+}

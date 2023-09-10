@@ -10,7 +10,7 @@
             border: 1px solid rgb(0, 50, 136);
             user-select: none;
             position: relative;
-            margin-bottom: 1.5rem;
+            /* margin-bottom: 1.5rem; */
         }
         
         .FilterSec label {
@@ -22,12 +22,11 @@
             align-items: center;
             margin-left: 0.5rem;
         }
-        
-        @media(max-width:560px) {
+        /* @media(max-width:560px) {
             .MainFilter {
                 display: none;
             }
-        }
+        } */
         
         .Filter div {
             width: 5rem!important;

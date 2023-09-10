@@ -24,7 +24,7 @@ const MainHeader = (props) => {
         <ul>
           <span className={classes.LoginActions}> 
           <li>
-          <button className='border-none hover:bg-transparent text-white right-[1.2rem] relative top-2 font-bold w-10 max-md:text-sm max-md:right-[1rem]' onClick={triggerCloseFinalForm}>LOGIN</button>
+          <button className='border-none hover:bg-transparent text-white right-[1rem] relative top-2 font-bold w-10 max-md:text-sm max-md:right-[1rem] outline-none' onClick={triggerCloseFinalForm}>LOGIN</button>
 
           </li>
         {/* <li>

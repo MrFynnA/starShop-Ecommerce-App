@@ -1,8 +1,7 @@
 import slider1 from './sshopify.png'
-import slider2 from './pexels-efrem-efre-17788543.jpg'
-import slider3 from './pexels-rachel-claire-4846097.jpg'
-import slider4 from './pexels-avinash-kumar-16005007.jpg'
-import slider5 from './pexels-jonas-svidras-803936.jpg'
+import slider3 from './sofa.png'
+import slider4 from './iphone14.png'
+import slider5 from './dreambig.png'
 
 export const sliderImages=[
     {url:slider1, title:''},

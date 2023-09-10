@@ -107,7 +107,6 @@ const cartReducer=(state,action)=>{
 
 const CartProvider=(props)=>{
     const cartData=useSelector(state=>state.cartData)
-    console.log(cartData)
    const[state,dispatch]=useReducer(cartReducer,initialState)
      const addItem=(items)=>{
         dispatch({type:'addItem',item:items})
@@ -117,7 +116,7 @@ const CartProvider=(props)=>{
           dispatch({type:'deleteItem',items:item})
      }
      const removeItemTotally=(item)=>{
-        console.log(item)
+   
         dispatch({type:'removeItemTotally',item:item})
      }
      const addDiscount=(disCount)=>{
@@ -131,7 +130,7 @@ const CartProvider=(props)=>{
         dispatch({type:'replaceCart', cartIData:items})
      }
 
-console.log(cartData.totalAmount)
+
 useEffect(()=>{
     if(cartData.cartItems!==undefined||null){
         replaceCartItems({
@@ -143,7 +142,7 @@ useEffect(()=>{
 },[cartData])
      
      
-    console.log(state.totalAmount)
+
     const value={
         onAddItem:addItem,
         onRemoveItem:removeItem,

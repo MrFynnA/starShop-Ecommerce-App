@@ -1,4 +1,5 @@
 // import Cart from './components/Cart/Cart';
+import { auth } from './config/firebse-config';
 import Layout from './components/Layout/Layout';
 // import Products from './components/Shop/Products';
 import fetchAction from './components/CartActions/fetchAction';
@@ -9,6 +10,7 @@ import CartContext from './components/CartContext/CartContext';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import AuthSection from './components/UserLogin/Auth';
 import HomeProducts from './components/Shop/Products';
+import { action } from './components/UserLogin/Auth';
 // import SearchActions from './components/SearchActions/SeachActions';
 let refreshPage=true
 function App() {
@@ -25,7 +27,6 @@ return {
 
 //receivingCartData
 useEffect(()=>{
-  console.log('hello')
 dispatch(fetchAction())
 },[dispatch])
 
@@ -41,23 +42,20 @@ const senCartRequets=async()=>{
       throw new Error("couldn't fetch")
     }
 
-    console.log('cartSent')
 }
 if(refreshPage===true){
   refreshPage=false
   return
 }
 if(cartChanged===true){
-  senCartRequets().catch(error=>console.log(error))
+  senCartRequets().catch(error=>'')
 }
 },[cartItemsToBeSent,cartChanged])
 
 
   const searchTerm=useSelector(state=>state.searchTerm.searchValue)
   const category=useSelector(state=>state.searchTerm.category)
-  // console.log(searchTerm)
   const[productData,setProductData]=useState([])
-  // console.log(productData)
   const applyData=useCallback((data)=>{
     const newData=data.products.map(data=>{
       return{
@@ -87,7 +85,7 @@ if(cartChanged===true){
 
   const tryAgain=()=>{
     itemRequest({url:'https://dummyjson.com/products'})
-    console.log('running')
+  
   }
 
   const router=createBrowserRouter([
@@ -96,7 +94,7 @@ if(cartChanged===true){
       element:<Layout/>,
       children:[
         {index:true, element:<HomeProducts error={error} isLoading={isLoading} onTryAgain={tryAgain} productData={productData}/>},
-        {path:'session', element:<AuthSection/>}
+        {path:'session', element:<AuthSection/>,action:action}
       ]
       
     

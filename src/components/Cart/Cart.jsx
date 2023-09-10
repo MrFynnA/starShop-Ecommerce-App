@@ -72,7 +72,7 @@ const Cart = (props) => {
    <CartCover className={`${classes.cart} ${cartItems.length===0 && classes.cartHeight}`}>
     <div className={classes.cartHeadItem}>
     <h2>Your Shopping Cart</h2>
-      <h2 className={classes.disCount}>{disCountMessage}</h2>
+      <h2 className={`${classes.disCount} font-mono font-bold`}>{disCountMessage}</h2>
     </div>
    
 {cartBox}

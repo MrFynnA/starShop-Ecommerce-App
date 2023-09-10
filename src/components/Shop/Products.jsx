@@ -2,17 +2,14 @@ import React,{useContext} from 'react';
 import ProductItem from './ProductItem';
 import classes from './Products.module.css';
 import CartContext from '../CartContext/CartContext';
-import img from '../../assets/(1)billmannie.jpg.png'
 import SearchActions from '../SearchActions/SeachActions';
 import NoSearchIcon from '../UI/NoSearch-icon';
 import{useSelector} from 'react-redux'
 import BinoSearchIcon from '../UI/BinocSearch-icon';
 import LoadingIcon from '../UI/Loading';
 import ImageSlider from '../ImageSlider/ImageSlider';
-import SalesPic from '../../assets/salePic.png'
 import { sliderImages } from '../ImageSlider/sliderImages/images';
-import LoginSection from '../UserLogin/Auth';
-import { Outlet } from 'react-router-dom';
+import Filter from '../SearchActions/Filter';
 
 
 
@@ -25,62 +22,60 @@ const Products = (props) => {
   const category=useSelector(state=>state.searchTerm.category)
   const ctx=useContext(CartContext)
   const{onAddItem,cartItems,totalAmount}=ctx
-  console.log(totalAmount)
-  const dummPro=[
-    {
-      id:1,
-      title:'iphone 9',
-      images:img,
-      price:4000.0,
-      description:'its the best'
-    },
-    {
-      id:2,
-      title:'iphone x',
-      price:6000.0,
-      description:'SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...'
-    },
-    {
-      id:3,
-      title:'Samsung Universe 9',
-      price:1249.00,
-      description:'its the best'
-    },
-    {
-      id:4,
-      title:'OPPOF19',
-      price:499.00,
-      description:'OPPO F19 is officially announced on April 2021'
+  // const dummPro=[
+  //   {
+  //     id:1,
+  //     title:'iphone 9',
+  //     images:img,
+  //     price:4000.0,
+  //     description:'its the best'
+  //   },
+  //   {
+  //     id:2,
+  //     title:'iphone x',
+  //     price:6000.0,
+  //     description:'SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...'
+  //   },
+  //   {
+  //     id:3,
+  //     title:'Samsung Universe 9',
+  //     price:1249.00,
+  //     description:'its the best'
+  //   },
+  //   {
+  //     id:4,
+  //     title:'OPPOF19',
+  //     price:499.00,
+  //     description:'OPPO F19 is officially announced on April 2021'
 
       
-    },
-    {
-      id:5,
-      title:'Huawei P30',
-      price:4000.0,
-      description:'Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.'
-    },
-    {
-      id:6,
-      title:'pixel',
-      price:4000.0,
-      description:'pixels re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.'
-    },
-    {
-      id:7,
-      title:'iphone 12',
-      price:600.0,
-      description:'SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...'
-    },
-    {
-      id:8,
-      title:'iphone 14',
-      price:800.0,
-      description:'SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...'
-    },
-  ]
+  //   },
+  //   {
+  //     id:5,
+  //     title:'Huawei P30',
+  //     price:4000.0,
+  //     description:'Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.'
+  //   },
+  //   {
+  //     id:6,
+  //     title:'pixel',
+  //     price:4000.0,
+  //     description:'pixels re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.'
+  //   },
+  //   {
+  //     id:7,
+  //     title:'iphone 12',
+  //     price:600.0,
+  //     description:'SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...'
+  //   },
+  //   {
+  //     id:8,
+  //     title:'iphone 14',
+  //     price:800.0,
+  //     description:'SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...'
+  //   },
+  // ]
   const products=props.productData
-  console.log(products)
   products.length===100 && products.shift()
 
   // const newProducts=
@@ -90,9 +85,6 @@ const Products = (props) => {
   // if(products.length!==0){
   //   productsItems=products
   // }
-  // console.log(props.error)
-  console.log(props.error)
-  const errorConnection='Sorry...Unable to connect to store'
   let items=products.map(items=><ProductItem
   id={items.id}
    key={items.id}
@@ -133,10 +125,17 @@ const Products = (props) => {
      
 {/* <LoginSection/> */}
       <SearchActions/>
-      {(searchTerm==='' || searchTerm===null) && (category==='' || category===null) && <div className={classes.sliderParent}>
+      {(searchTerm==='' || searchTerm===null) && (category==='' || category===null) && <div className={`${classes.sliderParent} relative max-lg:top-[-2rem]`}>
         <ImageSlider slider={sliderImages}/>
       </div>}
      {/* </div>  */}
+     <div className='md:hidden'>
+
+     <Filter/>
+     </div>
+     <div className='text-center mt-1 bg-slate-500 text-white py-4 text-xl italic mb-6 font-mono border-4 border-l-0 border-r-0 border-dashed border-blue-200'>
+      <div className='max-md:text-sm'>Happy Shopping....Shop here and get Amazing discounts!</div>
+     </div>
  <ul>
       {items}
 

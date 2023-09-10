@@ -7,7 +7,6 @@ const useHttps=(applyData)=>{
     const[error,setError]=useState(false)
        
     const requestData=useCallback(async(requestItem,abortSignal,searchTerm,category)=>{
-        console.log(category)
         setError(null)
         try{
              setIsLoading(true)

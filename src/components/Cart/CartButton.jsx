@@ -21,7 +21,7 @@ const dispatch=useDispatch()
   return (
     <>
        {cartVisibility && <Cart/>}
-    <button onClick={onViewCart} className={classes.button}>
+    <button onClick={onViewCart} className={`${classes.button}`}>
       {/* <span>My Cart</span> */}
       {/* <span className={classes.badge}>1</span> */}
       <span cartamount={totalItemNumber} className={classes.cartIconBtn}><CartIcon/></span>

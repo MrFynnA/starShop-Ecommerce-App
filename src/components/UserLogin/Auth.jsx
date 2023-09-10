@@ -31,3 +31,18 @@ return (
 }
 export default AuthSection
 
+export const action=async({data,request,params})=>{
+    console.log(request.method)
+    console.log('hi there Fynn')
+    const userDetails=await request
+    console.log(userDetails)
+   return null
+    // const user={
+    //     email:userDetails.get('email'),
+    //     password:userDetails.get('password')
+    // }
+}
+
+
+
+
