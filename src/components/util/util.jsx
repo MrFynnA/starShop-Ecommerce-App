@@ -1,3 +1,6 @@
+import { redirect } from "react-router-dom"
+import { auth } from "../../config/firebse-config"
+import { signOut } from "firebase/auth"
 
 
 
@@ -10,6 +13,19 @@ const getToken=()=>{
 export const tokenLoader=()=>{
    return getToken()
 }
+
+
+export const checkTokenLoader=()=>{
+    const token=getToken()
+    if(token){
+        return redirect('/')
+    }else{
+        return null
+    }
+}
+
+
+
 
 
 

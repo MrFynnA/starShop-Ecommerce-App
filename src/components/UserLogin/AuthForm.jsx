@@ -215,8 +215,8 @@ return(
          <Link to={`?sess=${isLogin && 'signup'}`} className={`${styles.creatAcc} underline`}>{isLogin?'create account':''}</Link>
             </div>
         </div>}
-        {nexForm && <div>
-           <div className='text-center font-bold italic text-sm'>{successMessage ? <p className='text-green-600'>Sign Up Successful</p>:'Let get you on board...'}</div>
+        {nexForm && <div className={slideRight && styles.slideRight}>
+           <div className='text-center font-bold italic text-sm'>{successMessage ? <p className='text-green-600'>Sign Up Successful</p>:'Lets get you on board...'}</div>
 
             <div className={styles.loginForm}>
             <div>

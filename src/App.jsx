@@ -12,6 +12,8 @@ import AuthSection from './components/UserLogin/Auth';
 import HomeProducts from './components/Shop/Products';
 import { action } from './components/UserLogin/AuthForm';
 import { tokenLoader } from './components/util/util';
+import { action as signOutAction } from './components/UserLogin/LogoutUser';
+import { checkTokenLoader } from './components/util/util';
 // import SearchActions from './components/SearchActions/SeachActions';
 let refreshPage=true
 function App() {
@@ -97,7 +99,14 @@ if(cartChanged===true){
       loader:tokenLoader,
       children:[
         {index:true, element:<HomeProducts error={error} isLoading={isLoading} onTryAgain={tryAgain} productData={productData}/>},
-        {path:'session', element:<AuthSection/>,action:action}
+        {
+          path:'logout',
+        action:signOutAction},
+        {path:'session', element:<AuthSection/>,
+        action:action,
+        loader:checkTokenLoader
+      
+      }
       ]
       
     

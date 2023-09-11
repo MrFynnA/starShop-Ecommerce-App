@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { signUpAction } from './store/slices/authSlice';
+import { signUpAction } from './store/slices/SignUpSlice';
 
 
 export const useTrigger=()=>{
