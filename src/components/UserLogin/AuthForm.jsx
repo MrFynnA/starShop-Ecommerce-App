@@ -3,12 +3,14 @@ import MyButton from '../UI/Button'
 import { Visible } from '../UI/VisibleEyes'
 import { NotVisible } from '../UI/VisibleEyes'
 import { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, redirect } from 'react-router-dom'
 import { useSearchParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import {useSelector,useDispatch} from 'react-redux'
-import { signUpAction } from '../store/slices/SignUpSlice'
-import { useSubmit } from 'react-router-dom'
+import { signUpAction } from '../store/slices/authSlice'
+import { useSubmit,Form,json } from 'react-router-dom'
+import { auth } from '../../config/firebse-config'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 
 
 const AuthForm=(props)=>{
@@ -23,30 +25,32 @@ const AuthForm=(props)=>{
     const[greenbarColor,setGreenBarColor]=useState(null)
     const[capacity,setCapacityText]=useState(null)
     const session=searchParam.get('sess')
-    const nexForm=useSelector(state=>state.signUp.nextSignUpForm)
+    const[email,setEmail]=useState()
+    const[firstname,setfirstName]=useState()
+    const[lastname,setlastName]=useState()
+    const[password,setPassword]=useState()
+    const[repassword,setrePassword]=useState()
     const submit=useSubmit()
-    const emailRef=useRef(null)
-    const passwordRef=useRef(null)
-    const rePasswordRef=useRef(null)
-    const firsnameRef=useRef(null)
-    const LastnameRef=useRef(null)
+    
+    const nexForm=useSelector(state=>state.signUp.nextSignUpForm)
+    const successMessage=useSelector(state=>state.signUp.successfulmessage)
 //submitting userData
 
 const submitUserData=()=>{
-        const userData={
-            // email:emailRef?.current.value,
-            // password:passwordRef?.current.value,
-            // rePassword:rePasswordRef?.current.value,
-            firstname:firsnameRef?.current.value,
-            lastname:LastnameRef?.current.value
-        }
-        console.log(userData)
 
         // if(userData.email.trim()==='' && userData.password.trim()==='' && userData.rePassword.trim()==='' && userData.firstname.trim()==='' &&  userData.lastname.trim()===''){
         //     return
         // }
-        submit({data:userData},{method:'POST'})
+    
     }
+
+    useEffect(()=>{
+if(successMessage){
+    setTimeout(()=>{
+        dispatch(signUpAction.getsuccessfulMessage(null))
+    },8000)
+}
+    },[successMessage])
 
     const isLogin=searchParam.get('sess')==='login'
 
@@ -98,8 +102,9 @@ const submitUserData=()=>{
       const setCheckedValue=(event)=>{
      setChecked(prev=>!prev)
       }
-
+//checking password strength
       const onGetPassword=(event)=>{
+        setPassword(event.target.value)
         if((event.target.value.trim().length<=25 && event.target.value.trim().search(/[A-Z]/)<0) || (event.target.value.trim().length<6 && /[A-Z]/.test(event.target.value.trim()))){
            setRedBarColor(styles.redBarColor)
            setYellowBarColor(null)
@@ -129,58 +134,111 @@ const submitUserData=()=>{
 
 const visibleStatus=visible==='password'? <NotVisible onClick={()=>setVisibility('text')}/>:<Visible onClick={()=>setVisibility('password')}/>
   
+
+//Getting input Values
+const onGetEmail=(event)=>{
+    setEmail(event.target.value)
+}
+const onGetfirstname=(event)=>{
+    setfirstName(event.target.value)
+    
+}
+const onGetlastname=(event)=>{
+    setlastName(event.target.value)
+    
+}
+
+const onGetrePassword=(event)=>{
+    setrePassword(event.target.value)
+
+}
+
+const submitData=()=>{
+    if(isLogin){
+        return
+    }
+    const userData={
+      email:email,
+      firstname:firstname,
+      lastname:lastname,
+      password:password,
+      repassword:repassword
+    }
+
+    props.userCred(userData)
+
+}
+
+
 return(
-    <form onSubmit={props.onsubmit}>
+    <>
+    <Form method='post' onSubmit={submitData}>
         <div className={styles.overralLoginForm}>
         
             {!nexForm && <div className={`${styles.innerLoginForm} ${slideRight && styles.slideRight}`}>
             <div className={styles.loginForm}>
         <div>
             <label htmlFor="Email">Email:</label>
-       <span className={styles.formInput}><input type="email" ref={emailRef} placeholder='Email' id="email"/></span>
+       <span className={styles.formInput}><input type="email" name="email"  placeholder='Email' value={email} onChange={onGetEmail} id="email"/></span>
         </div>
-        <div>
+        {isLogin && <div>
             <label htmlFor="password">Password:</label>
-      <span className={styles.formInput}><input ref={passwordRef} type={visible} placeholder='Password' id="password" onChange={onGetPassword}/>{visibleStatus}</span> 
-     {!isLogin && <div className='flex justify-between items-center h-2  mt-4 px-2'>
+      <span className={styles.formInput}><input  name="password" type={visible} placeholder='Password' id="password"/>{visibleStatus}</span> 
+     {/* {!isLogin && <div className='flex justify-between items-center h-2  mt-4 px-2'>
         <div className='flex justify-start items-center gap-2'>
         <div className={`${redbarColor} ${yellowbarColor} ${greenbarColor} w-16 h-1 rounded-md`}></div>
         <div className={`${yellowbarColor} ${greenbarColor} w-16 h-1 rounded-md`}></div>
         <div className={`${greenbarColor} w-16 h-1 rounded-md`}></div>
         </div>
         <div className='text-[12px]'>{capacity}</div>
-      </div>}
-        </div>
-       {!isLogin && <div className='mt-[-0.5rem] max-md:mt-[-0.4rem]'>
-            <label htmlFor="password">Re-enter Password:</label>
-      <span className={styles.formInput}><input type={visible} ref={rePasswordRef} placeholder='Repeat Password' id="password"/>{visibleStatus}</span> 
+      </div>} */}
         </div>}
+       {!isLogin && 
+       <>
+       <div>
+            <label htmlFor="FisrtName">First Name:</label>
+       <span className={styles.formInput}><input value={firstname}  type="text" placeholder='First name' name='firstname' onChange={onGetfirstname} id="firstname"/></span>
+        </div>
+        <div>
+            <label htmlFor="LastName">Last Name:</label>
+       <span className={styles.formInput}><input type="text" placeholder='Last name' name='lastname' onChange={onGetlastname} value={lastname} id="lastname"/></span>
+        </div>
+       </>
+        
+        }
         </div>
         <div className={`${styles.actions} ${!isLogin && styles.actionSpace}`}>
-         <MyButton onClick={moveToNextForm} backgroundcolor={'black'} textcolor={'white'} type={'button'}>{buttonText}</MyButton>
+         <MyButton onClick={moveToNextForm} backgroundcolor={'black'} textcolor={'white'} type={'submit'}>{buttonText}</MyButton>
         </div>
         <div className='flex items-center justify-center relative top-4 gap-2'>
             {isLogin && <div>Don't have an account yet?</div>}
-         <Link to={`?sess=${isLogin ?'signup' :'login'}`} className={`${styles.creatAcc} underline`}>{isLogin?'create account':''}</Link>
-        </div>
-            </div>}
-            {/* final registeration step */}
-            {nexForm && <div className={`${styles.innerLoginForm} ${slideRight && styles.slideRight}`}>
-            {nexForm && <p className='text-center font-bold italic text-sm'>Let us know your name...</p>}
+         <Link to={`?sess=${isLogin && 'signup'}`} className={`${styles.creatAcc} underline`}>{isLogin?'create account':''}</Link>
+            </div>
+        </div>}
+        {nexForm && <div>
+           <div className='text-center font-bold italic text-sm'>{successMessage ? <p className='text-green-600'>Sign Up Successful</p>:'Let get you on board...'}</div>
 
             <div className={styles.loginForm}>
-   
-        <div>
-            <label htmlFor="Fisrt Name">First Name:</label>
-       <span className={styles.formInput}><input ref={firsnameRef} type="text" placeholder='First name' id="firstname"/></span>
+            <div>
+            <label htmlFor="password">Password:</label>
+      <span className={styles.formInput}><input  name="password" type={visible} placeholder='Password' value={password} id="password" onChange={onGetPassword}/>{visibleStatus}</span> 
+     <div className='flex justify-between items-center h-2  mt-4 px-2'>
+        <div className='flex justify-start items-center gap-2'>
+        <div className={`${redbarColor} ${yellowbarColor} ${greenbarColor} w-16 h-1 rounded-md`}></div>
+        <div className={`${yellowbarColor} ${greenbarColor} w-16 h-1 rounded-md`}></div>
+        <div className={`${greenbarColor} w-16 h-1 rounded-md`}></div>
         </div>
-        <div>
-            <label htmlFor="Last Name">Last Name:</label>
-       <span className={styles.formInput}><input type="text" ref={LastnameRef} placeholder='Last name' id="lastname"/></span>
+        <div className='text-[12px]'>{capacity}</div>
+      </div>
         </div>
+            <div className='mt-[-0.5rem] max-md:mt-[-0.4rem]'>
+            <label htmlFor="passwordrepeat">Re-enter Password:</label>
+      <span className={styles.formInput}><input type={visible} value={repassword} name="passwordrepeat"  placeholder='Repeat Password' onChange={onGetrePassword} id="passwordrepeat"/>{visibleStatus}</span> 
+        </div>
+       
         </div>
         <div className={`${styles.actions} ${!isLogin && styles.actionSpace} flex items-center justify-center gap-6`}>
-         <MyButton onClick={submitUserData} disabled={checked===false} backgroundcolor={'black'} textcolor={'white'} type={'button'}>{nexForm?'SIGNUP':""}</MyButton>
+         <MyButton disabled={checked===false} backgroundcolor={'black'} textcolor={'white'} type='submit'>{nexForm?'SIGNUP':""}</MyButton>
          <MyButton onClick={goBackToFirstSignUpForm} backgroundcolor={'black'} textcolor={'white'} type={'button'}>{nexForm?'BACK':""}</MyButton>
         </div>
         <div className='flex items-center justify-center gap-2 mt-10 max-md:mt-10 max-md:gap-[0px]'>
@@ -188,11 +246,52 @@ return(
         <div className='max-md:text-[12px]'>I agree to the terms and conditions.</div>
             </div>
             </div>}
-      
-        </div>
-      
-    </form>
+             </div>
+             </Form>
+            {/* final registeration step */}
+            
+            </>
 )
-}
+}  
+
+
 
 export default AuthForm
+export const action=async({request,params})=>{
+const requestData=await request.formData()
+const userDetails={
+    email:requestData.get('email'),
+    password:requestData.get('password')
+
+}
+
+console.log(userDetails)
+const searchParam=new URL(request.url).searchParams
+const session=searchParam.get('sess')
+   if(session==='login'){
+    try{
+        const res=await signInWithEmailAndPassword(auth,userDetails.email,userDetails.password)
+         
+       localStorage.setItem('localId_token',res._tokenResponse.localId)
+     
+        return redirect('/')
+
+    }catch(error){
+         console.log(error.message)
+         return error.message
+    }
+    
+
+   
+
+   }else if(session==='signup'){
+    return null
+   }else{
+      return redirect('/')
+   }
+    
+    // const user={
+    //     email:userDetails.get('email'),
+    //     password:userDetails.get('password')
+    // }
+}

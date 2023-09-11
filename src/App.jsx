@@ -10,7 +10,8 @@ import CartContext from './components/CartContext/CartContext';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import AuthSection from './components/UserLogin/Auth';
 import HomeProducts from './components/Shop/Products';
-import { action } from './components/UserLogin/Auth';
+import { action } from './components/UserLogin/AuthForm';
+import { tokenLoader } from './components/util/util';
 // import SearchActions from './components/SearchActions/SeachActions';
 let refreshPage=true
 function App() {
@@ -92,6 +93,8 @@ if(cartChanged===true){
     {
       path:'/',
       element:<Layout/>,
+      id:'load_id2525',
+      loader:tokenLoader,
       children:[
         {index:true, element:<HomeProducts error={error} isLoading={isLoading} onTryAgain={tryAgain} productData={productData}/>},
         {path:'session', element:<AuthSection/>,action:action}

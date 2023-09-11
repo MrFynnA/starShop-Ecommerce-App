@@ -1,4 +1,4 @@
-import { notificationActions } from "../store/slices/UI-Slice"
+import { notificationActions } from "../store/slices/noficationSlice"
 import { cartDataAction } from "../store/redStore"
 
 
@@ -13,7 +13,6 @@ return async(dispatch)=>{
 
       try{
        const cartData= await fetchData()
-       console.log(cartData)
          dispatch(cartDataAction.onCartDataReceived({
             cartItems:cartData.ItemsInCart,
             totalAmount:cartData.totalAmount,

@@ -1,6 +1,7 @@
 import {createSlice,configureStore} from '@reduxjs/toolkit'
-import notification from './slices/UI-Slice'
-import SignUpSlice from './slices/SignUpSlice'
+import notification from './slices/noficationSlice'
+import authSlice from './slices/authSlice'
+import UISlice from './slices/UISlice'
 
 const cartDataSlice=createSlice({
     name:'cartDataFromBackEnd',
@@ -82,7 +83,8 @@ const store=configureStore({
         searchTerm:searchReducer,
         notify:notification,
         cartData:cartDataSlice.reducer,
-        signUp:SignUpSlice
+        signUp:authSlice,
+        uiDisplay:UISlice
     }
 })
 

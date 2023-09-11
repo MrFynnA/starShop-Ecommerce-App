@@ -2,15 +2,41 @@ import React from "react"
 import AuthForm from "./AuthForm"
 import classes from './Auth.module.css'
 import Card from '../UI/Card'
-import { useSearchParams } from "react-router-dom"
+import { useSearchParams,redirect,useNavigate } from "react-router-dom"
+import { auth } from "../../config/firebse-config"
+import {createUserWithEmailAndPassword} from 'firebase/auth'
+import {useDispatch} from 'react-redux'
+import { signUpAction } from "../store/slices/authSlice"
 
 const AuthSection=()=>{
       const[searchParam]=useSearchParams()
-      const isLogin=searchParam.get('sess')==='login'
+      const isLogin=searchParam.get('sess')
+      const navigate=useNavigate()
+      const dispatch=useDispatch()
 
-    const onSubmit=()=>{
+    const onuserAuthOperation=async(userDetails)=>{
+             const userSignUp={
+                email:userDetails.email,
+                password:userDetails.password
+             }
+                
+                 try{
+                     const res=  await createUserWithEmailAndPassword(auth,userSignUp.email,userSignUp.password)
+                     console.log(userSignUp.password)
+                  
+                  dispatch(signUpAction.getsuccessfulMessage('Sign Up Successful'))   
+                  console.log(res._tokenResponse.localId)    
+                  
 
+                 }catch(error){
+                    console.log(error.message)
+                   dispatch(signUpAction.geterrorMessage(error.message))
+                 }
+
+           
     }
+
+    // console.log(auth?.currentUser?.uid)
 
 return (
     <React.Fragment>
@@ -22,7 +48,7 @@ return (
         borderradius={'10px'}
         className={classes.MainForm}>
             <h3 className={classes.loginTitle}>STAR SHOPIFY <sub className="font-mono font-bold text-lg">{isLogin?'Login':'SignUp'}</sub></h3>
-    <AuthForm onsubmit={onSubmit}/>
+    <AuthForm userCred={onuserAuthOperation} />
         </Card>
         </div>
       
@@ -31,17 +57,7 @@ return (
 }
 export default AuthSection
 
-export const action=async({data,request,params})=>{
-    console.log(request.method)
-    console.log('hi there Fynn')
-    const userDetails=await request
-    console.log(userDetails)
-   return null
-    // const user={
-    //     email:userDetails.get('email'),
-    //     password:userDetails.get('password')
-    // }
-}
+
 
 
 

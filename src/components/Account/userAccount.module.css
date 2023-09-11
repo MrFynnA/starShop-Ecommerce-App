@@ -1,0 +1,18 @@
+.menu li a {
+    margin-left: 0px;
+    position: relative;
+    left: 0;
+    color: black!important;
+}
+
+.menulist {
+    align-items: flex-start!important;
+    padding-left: 4px !important;
+    padding-top: 1rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+
+/* .menu {
+    margin-right: 3rem !important;
+} */

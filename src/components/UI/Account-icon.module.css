@@ -11,9 +11,12 @@
         }
     }
     
-    .accountIcon:hover {
+    .accountMain:hover {
         .accIcon {
             fill: rgb(4, 4, 4);
+        }
+        .accountText {
+            color: rgb(4, 4, 4);
         }
         cursor:pointer;
     }
