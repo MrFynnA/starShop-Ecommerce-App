@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 const SearchActions=()=>{
 return (
 <React.Fragment>
-    <div className='mt-[-1rem] mb-4'>
+    <div className='mb-4 relative mt-0'>
         
     <div className={`${classes.SearchActions} bg-black  relative`}>
         <SubHeader/>
@@ -18,7 +18,7 @@ return (
 </div>
         <SearchForm inputItems={{
             type:'text',
-            placeholder:'search products...',
+            placeholder:'search what you want...',
             id:'searchBox'
             
         }}/>

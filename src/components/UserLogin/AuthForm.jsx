@@ -189,7 +189,7 @@ return(
             {wrongCredentials && <div className='text-center font-bold italic text-[12px] text-red-600 border-2 border-red-300'>{data.message}</div>}
             <div className={styles.loginForm}>
            <div className='relative mb-[-1rem]'>
-            {submitting && <div className={`${styles.submitText} font-bold max-md:bottom-[4.5rem] bottom-14 text-xl text-[#04b1d4]`}>●</div>}
+            {submitting && <div className={`${styles.submitText} font-bold max-md:bottom-[4rem] bottom-14 text-xl text-[#04b1d4]`}>●</div>}
            </div>
         
         <div>
