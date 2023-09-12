@@ -26,15 +26,15 @@ return <div>
     
     </div>
  
-    {userMenu && <div className={`${classes.menu} absolute rounded-b-md bg-white right-49 w-32 top-20 border-2`}>
+    {userMenu && <div className={`${classes.menu} absolute rounded-b-md bg-white right-49 w-32 top-14 max-md:top-12 border-2`}>
 <ul className={`${classes.menulist} relative font-mono flex flex-col text-black text-[14px] justify-start gap-3`}>
-    <li className="flex py-2 justify-center items-center gap-2 cursor-pointer hover:bg-slate-200">
+    <li className="flex py-2 rounded-sm justify-center items-center gap-2 cursor-pointer hover:bg-slate-200">
         <DeliveryIcon/>
         <div className="relative top-1"><Link>Orders</Link></div>
         
     </li>
     <li className="">  
-    <button onClick={logoutUser} className='flex justify-center gap-2 py-2  hover:bg-slate-200 rounded-none border-none  hover:bg-transparent p-0 mr-0 ml-0 hover:text-black  text-black font-bold w-full max-md:text-sm outline-none' >
+    <button onClick={logoutUser} className='flex justify-center gap-2 py-2  hover:bg-slate-200 rounded-sm border-none  hover:bg-transparent p-0 mr-0 ml-0 hover:text-black  text-black font-bold w-full max-md:text-sm outline-none' >
     <LogoutIcon/>
         Logout</button>
     </li>

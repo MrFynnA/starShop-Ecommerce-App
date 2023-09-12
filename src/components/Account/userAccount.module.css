@@ -21,6 +21,17 @@
     padding-left: 0px!important;
 }
 
+@media(max-width:400px) {
+    .menulist {
+        align-items: center!important;
+    }
+    .menulist li {
+        width: 100%;
+        position: relative;
+        right: 1rem;
+    }
+}
+
 
 /* .menu {
     margin-right: 3rem !important;

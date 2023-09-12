@@ -10,6 +10,8 @@ import LoadingIcon from '../UI/Loading';
 import ImageSlider from '../ImageSlider/ImageSlider';
 import { sliderImages } from '../ImageSlider/sliderImages/images';
 import Filter from '../SearchActions/Filter';
+import { sideImages } from './sideProImages';
+import CallingIC from '../UI/calling-icon';
 
 
 
@@ -125,9 +127,32 @@ const Products = (props) => {
      
 {/* <LoginSection/> */}
       <SearchActions/>
-      {(searchTerm==='' || searchTerm===null) && (category==='' || category===null) && <div className={`${classes.sliderParent} relative max-lg:top-[-2rem]`}>
-        <ImageSlider slider={sliderImages}/>
-      </div>}
+      {(searchTerm==='' || searchTerm===null) && (category==='' || category===null) && 
+      <div className='w-full flex justify-center items-top gap-1'>
+        <div className={`${classes.images} w-[15%] bg-[#6de0f7] text-center text-white mt-[-1rem] max-md:hidden flex flex-col gap-8 items-center`}>
+          {/* <div className='w-full'>call to place order</div> */}
+          <div className='flex flex-col gap-4 items-center justify-center w-[72%] mt-5'>
+          {sideImages.map(items=><div className={classes.imageBox} imageTitle={items.title}><img className={`rounded-lg`} key={items.id} src={items.img[0]} alt={items.title}></img></div>)}
+          </div>
+        </div>
+        <div className={`${classes.sliderParent} relative max-lg:top-[-2rem]`}>
+      <ImageSlider slider={sliderImages}/>
+    </div>
+    
+    <div className='w-[15%] flex flex-col gap-4 items-center bg-orange-400 text-center text-white mt-[-1rem] max-md:hidden'>
+      <div className={`${classes.leftSideFirstBox} pt-3 flex flex-col gap-4 items-center`}>
+          <CallingIC/>
+          <div className='w-full text-3xl font-bold '>call to place orders</div>
+          <div className='w-full text-black text-4xl font-bold font-serif'>+233-5454 11926</div>
+        </div>
+      <div className='flex flex-col gap-4 items-center'>
+          <CallingIC/>
+          <div className='w-full text-3xl font-bold'>call to place orders</div>
+          <div className='w-full text-black text-4xl font-bold font-serif'>+233-5454 11926</div>
+        </div>
+
+      </div>
+    </div>}
      {/* </div>  */}
      <div className='md:hidden'>
 
