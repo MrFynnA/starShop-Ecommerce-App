@@ -129,7 +129,7 @@ const Products = (props) => {
       <SearchActions/>
       {(searchTerm==='' || searchTerm===null) && (category==='' || category===null) && 
       <div className='w-full flex justify-center items-top gap-1'>
-        <div className={`${classes.images} w-[15%] bg-[#6de0f7] text-center text-white mt-[-1rem] max-md:hidden flex flex-col gap-8 items-center`}>
+        <div className={`${classes.images} w-[15%] bg-[#6de0f7] text-center text-white mt-[-1rem] max-lg:hidden flex flex-col gap-8 items-center`}>
           {/* <div className='w-full'>call to place order</div> */}
           <div className='flex flex-col gap-4 items-center justify-center w-[72%] mt-5'>
           {sideImages.map(items=><div className={classes.imageBox} imageTitle={items.title}><img className={`rounded-lg`} key={items.id} src={items.img[0]} alt={items.title}></img></div>)}
@@ -137,17 +137,18 @@ const Products = (props) => {
         </div>
         <div className={`${classes.sliderParent} relative max-lg:top-[-2rem]`}>
       <ImageSlider slider={sliderImages}/>
+      
     </div>
     
-    <div className='w-[15%] flex flex-col gap-4 items-center bg-orange-400 text-center text-white mt-[-1rem] max-md:hidden'>
+    <div className='w-[15%] flex flex-col gap-4 border-4 rounded-md border-black items-center bg-orange-400 text-center text-white mt-[-1rem] max-lg:hidden'>
       <div className={`${classes.leftSideFirstBox} pt-3 flex flex-col gap-4 items-center`}>
           <CallingIC/>
-          <div className='w-full text-3xl font-bold '>call to place orders</div>
+          <div className='w-full text-3xl font-bold '>call to place order on</div>
           <div className='w-full text-black text-4xl font-bold font-serif'>+233-5454 11926</div>
         </div>
       <div className='flex flex-col gap-4 items-center'>
           <CallingIC/>
-          <div className='w-full text-3xl font-bold'>call to place orders</div>
+          <div className='w-full text-3xl font-bold'>call to place orders on</div>
           <div className='w-full text-black text-4xl font-bold font-serif'>+233-5454 11926</div>
         </div>
 
@@ -158,6 +159,13 @@ const Products = (props) => {
 
      <Filter/>
      </div>
+     <div className={`${classes.imagesSmallscreen} w-[100%] max-md:overflow-x-scroll bg-[#6de0f7] text-center text-white
+       mt-[-1rem] lg:hidden flex gap-8 items-center max-lg:mt-[-2rem] max-md:mt-0`}>
+          {/* <div className='w-full'>call to place order</div> */}
+          <div className={`${classes.imageBoxSmallD}  flex gap-4 items-center justify-center h-[8rem] ml-2 mr-2  mt-5 `}>
+          {sideImages.map(items=><div className={classes.imageBox} imageTitle={items.title}><img className={`rounded-lg max-md:h-[6.8rem] max-lg:h-[8rem] w-full`} key={items.id} src={items.img[0]} alt={items.title}></img></div>)}
+          </div>
+        </div>
      <div className='text-center mt-1 bg-slate-500 text-white py-4 text-xl italic mb-6 font-mono border-4 border-l-0 border-r-0 border-dashed border-blue-200'>
       <div className='max-md:text-sm'>Happy Shopping....Shop here and get Amazing discounts!</div>
      </div>

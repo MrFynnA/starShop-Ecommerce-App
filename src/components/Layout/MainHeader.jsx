@@ -22,7 +22,7 @@ const MainHeader = (props) => {
   }
   return (
     <header className={classes.header}>
-      <div onClick={()=>navigate('')} className={`text-4xl font-bold ${classes.SiteTitle}`}><h1>starShopify</h1></div>
+      <div onClick={()=>navigate('')} className={`text-4xl font-bold ${classes.SiteTitle}`}><h1>StarShopify</h1></div>
       <nav className='relative max-md:mr-6'>
         <ul className='flex items-center gap-5'>
           <span className={classes.LoginActions}> 

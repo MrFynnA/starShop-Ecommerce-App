@@ -1,34 +1,49 @@
-        .Filter {
-            height: 2.5rem;
-            margin-left: 1rem;
-            font-size: 1rem;
-            border-radius: 1rem;
-            width: 10rem;
-            padding-left: 1rem;
-            cursor: pointer;
-            outline: none;
-            border: 1px solid rgb(0, 50, 136);
-            user-select: none;
-            position: relative;
-            /* margin-bottom: 1.5rem; */
-        }
-        
-        .FilterSec label {
-            font-weight: 700;
-        }
-        
-        .FilterSec {
-            display: flex;
-            align-items: center;
-            margin-left: 0.5rem;
-        }
-        /* @media(max-width:560px) {
+                .Filter {
+                    height: 2.5rem;
+                    margin-left: 1rem;
+                    font-size: 1rem;
+                    border-radius: 1rem;
+                    width: 140px!important;
+                    padding-left: 1rem;
+                    cursor: pointer;
+                    outline: none;
+                    /* border-style: none!important; */
+                    user-select: none;
+                    position: relative;
+                    border-radius: 5rem;
+                    /* appearance: none!important; */
+                    /* background-color: aqua; */
+                    /* margin-bottom: 1.5rem; */
+                }
+                
+                .Filter option {
+                    position: relative!important;
+                    right: 1rem!important;
+                }
+                
+                @media(max-width: 480px) {
+                    .Filter option {
+                        width: 10px!important;
+                        font-size: 10px !important;
+                    }
+                }
+                
+                .FilterSec label {
+                    font-weight: 700;
+                }
+                
+                .FilterSec {
+                    display: flex;
+                    align-items: center;
+                    margin-left: 0.5rem;
+                }
+                /* @media(max-width:560px) {
             .MainFilter {
                 display: none;
             }
         } */
-        
-        .Filter div {
-            width: 5rem!important;
-            cursor: pointer!important;
-        }
+                
+                .Filter div {
+                    width: 5rem!important;
+                    cursor: pointer!important;
+                }

@@ -11,6 +11,7 @@
     border-radius: 6px;
     border-style: none;
     position: relative;
+    outline: none;
 }
 
 .myButton:disabled,

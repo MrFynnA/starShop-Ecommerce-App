@@ -22,15 +22,15 @@ const onChangeCat=()=>{
 
 return(
     <React.Fragment>
-        <div className='max-md:flex max-md:items-center relative md:top-2 max-md:justify-around max-md:mt-[-2rem] max-md:bg-black max-md:py-4'>
+        <div className='max-md:flex max-md:items-center relative md:top-2 max-md:justify-center max-md:gap-5 max-md:mt-[-2rem] max-md:bg-black max-md:py-4'>
 
             
             <div className={`${classes.FilterSec} max-md:relative`}>
 <FilterIcon/>
         <div className="text-white ml-4">{'Categories'}</div>
             </div>
-            
-    <select className={`${classes.Filter} mb-[1.5rem] max-md:mb-0`} onChange={onChangeCat} ref={category}>
+        <div>
+    <select className={`${classes.Filter} mb-[1.5rem] max-md:mb-0 text-sm`} onChange={onChangeCat} ref={category}>
         <option>All</option>
         <option>smartphones</option>
         <option>laptops</option>
@@ -39,6 +39,8 @@ return(
         <option>groceries</option>
         <option>home decoration</option>
     </select>
+            
+            </div>    
         </div>
     </React.Fragment>
     

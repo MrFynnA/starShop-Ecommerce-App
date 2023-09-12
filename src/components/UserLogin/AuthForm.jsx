@@ -4,7 +4,7 @@ import { Visible } from '../UI/VisibleEyes'
 import { NotVisible } from '../UI/VisibleEyes'
 import { useRef, useState } from 'react'
 import { Link, redirect } from 'react-router-dom'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams,useActionData,useNavigation } from 'react-router-dom'
 import { useEffect } from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 import { signUpAction } from '../store/slices/authSlice'
@@ -30,10 +30,18 @@ const AuthForm=(props)=>{
     const[lastname,setlastName]=useState()
     const[password,setPassword]=useState()
     const[repassword,setrePassword]=useState()
+    const data=useActionData()
     const submit=useSubmit()
+    const navigation=useNavigation()
+
     
     const nexForm=useSelector(state=>state.signUp.nextSignUpForm)
     const successMessage=useSelector(state=>state.signUp.successfulmessage)
+    const emailError=data && data.error
+    const passwordError=data && data.error
+    const wrongCredentials=data && data.errorCred
+    
+    const submitting=navigation.state==='submitting'
 //submitting userData
 
 const submitUserData=()=>{
@@ -157,6 +165,8 @@ const submitData=()=>{
     if(isLogin){
         return
     }
+
+
     const userData={
       email:email,
       firstname:firstname,
@@ -176,14 +186,23 @@ return(
         <div className={styles.overralLoginForm}>
         
             {!nexForm && <div className={`${styles.innerLoginForm} ${slideRight && styles.slideRight}`}>
+            {wrongCredentials && <div className='text-center font-bold italic text-[12px] text-red-600 border-2 border-red-300'>{data.message}</div>}
             <div className={styles.loginForm}>
+           <div className='relative mb-[-1rem]'>
+            {submitting && <div className={`${styles.submitText} font-bold max-md:bottom-[4.5rem] bottom-14 text-xl text-[#04b1d4]`}>●</div>}
+           </div>
+        
         <div>
             <label htmlFor="Email">Email:</label>
-       <span className={styles.formInput}><input type="email" name="email"  placeholder='Email' value={email} onChange={onGetEmail} id="email"/></span>
+       <span className={`${styles.formInput} ${emailError && data.emailMessage && '!border-red-600' } relative`}><input type="email" name="email"  placeholder='Email' value={email} onChange={onGetEmail} id="email"/>
+       <p className='text-[12px] absolute top-11 text-red-600'>{emailError && data.emailMessage}</p>
+       </span>
         </div>
-        {isLogin && <div>
+        {isLogin && <div className='mt-2'>
             <label htmlFor="password">Password:</label>
-      <span className={styles.formInput}><input  name="password" type={visible} placeholder='Password' id="password"/>{visibleStatus}</span> 
+      <span className={`${styles.formInput} ${passwordError && data.passwordMessage && '!border-red-600' } relative`}><input  name="password" type={visible} placeholder='Password' id="password"/>{visibleStatus}
+      <p className='text-[12px] absolute top-11 text-red-600'>{passwordError && data.passwordMessage}</p>
+      </span> 
      {/* {!isLogin && <div className='flex justify-between items-center h-2  mt-4 px-2'>
         <div className='flex justify-start items-center gap-2'>
         <div className={`${redbarColor} ${yellowbarColor} ${greenbarColor} w-16 h-1 rounded-md`}></div>
@@ -208,7 +227,7 @@ return(
         }
         </div>
         <div className={`${styles.actions} ${!isLogin && styles.actionSpace}`}>
-         <MyButton onClick={moveToNextForm} backgroundcolor={'black'} textcolor={'white'} type={'submit'}>{buttonText}</MyButton>
+         <MyButton onClick={moveToNextForm} disabled={submitting} backgroundcolor={'black'} textcolor={'white'} type={'submit'}>{buttonText}</MyButton>
         </div>
         <div className='flex items-center justify-center relative top-4 gap-2'>
             {isLogin && <div>Don't have an account yet?</div>}
@@ -257,6 +276,8 @@ return(
 
 
 export default AuthForm
+
+let touched=false
 export const action=async({request,params})=>{
 const requestData=await request.formData()
 const userDetails={
@@ -264,8 +285,24 @@ const userDetails={
     password:requestData.get('password')
 
 }
+ touched=true
 
-console.log(userDetails)
+//  const checkEmailwrong=touched && userDetails.email.trim()===''
+ const checkEmailcorrect=touched && userDetails.email.trim()!==''
+
+console.log('hiiiiiiiiiiiiiiiiiiiiiiiiiiii')
+const correctEmail= userDetails.email.trim()!=='' && userDetails.email.trim().includes('.co') && (userDetails.email.trim().includes('@gmail') ||userDetails.email.trim().includes('@yahoo')||userDetails.email.trim().includes('@ymail'))
+
+const correctPassword=userDetails.password!==''
+
+if(!correctEmail || !correctPassword ){
+    return {error:true,
+        emailMessage:!correctEmail?'Please enter a valid Email':null,
+        passwordMessage:!correctPassword?'Please enter a valid password':null
+}
+  }
+  
+
 const searchParam=new URL(request.url).searchParams
 const session=searchParam.get('sess')
    if(session==='login'){
@@ -277,8 +314,14 @@ const session=searchParam.get('sess')
         return redirect('/')
 
     }catch(error){
-         console.log(error.message)
-         return error.message
+         if(error.message.includes('network')){
+            return{
+                errorCred:true, message:'Please check network connection'
+            }
+         }
+         return {
+            errorCred:true, message:'Email or password is incorrect'
+         }
     }
     
 
@@ -287,7 +330,10 @@ const session=searchParam.get('sess')
    }else if(session==='signup'){
     return null
    }else{
-      return redirect('/')
+    setTimeout(()=>{
+
+        return redirect('/')
+    },10000)
    }
     
     // const user={
