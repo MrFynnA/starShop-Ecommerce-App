@@ -277,21 +277,23 @@ return(
 
 export default AuthForm
 
-let touched=false
+
 export const action=async({request,params})=>{
+    console.log('i run but failed')
 const requestData=await request.formData()
 const userDetails={
     email:requestData.get('email'),
     password:requestData.get('password')
 
 }
- touched=true
-
 //  const checkEmailwrong=touched && userDetails.email.trim()===''
- const checkEmailcorrect=touched && userDetails.email.trim()!==''
+const searchParam=new URL(request.url).searchParams
+const session=searchParam.get('sess')
 
-console.log('hiiiiiiiiiiiiiiiiiiiiiiiiiiii')
-const correctEmail= userDetails.email.trim()!=='' && userDetails.email.trim().includes('.co') && (userDetails.email.trim().includes('@gmail') ||userDetails.email.trim().includes('@yahoo')||userDetails.email.trim().includes('@ymail'))
+   if(session==='login'){
+
+    console.log('nigga man')
+    const correctEmail= userDetails.email.trim()!=='' && userDetails.email.trim().includes('.co') && (userDetails.email.trim().includes('@gmail') ||userDetails.email.trim().includes('@yahoo')||userDetails.email.trim().includes('@ymail'))
 
 const correctPassword=userDetails.password!==''
 
@@ -301,11 +303,7 @@ if(!correctEmail || !correctPassword ){
         passwordMessage:!correctPassword?'Please enter a valid password':null
 }
   }
-  
-
-const searchParam=new URL(request.url).searchParams
-const session=searchParam.get('sess')
-   if(session==='login'){
+  console.log('yessir boss')
     try{
         const res=await signInWithEmailAndPassword(auth,userDetails.email,userDetails.password)
          
