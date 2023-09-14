@@ -11,6 +11,6 @@ const onGetSearchTerm=(event)=>{
 }
 
 
-return <span className={classes['search-input']}><SearchIcon/><input {...props.inputItems} onChange={onGetSearchTerm}/></span>
+return <span className={`${classes['search-input']}`}><SearchIcon/><input {...props.inputItems} onChange={onGetSearchTerm}/></span>
 }
 export default SearchForm

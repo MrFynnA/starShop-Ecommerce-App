@@ -5,7 +5,8 @@ import { createSlice } from "@reduxjs/toolkit"
 const uiSlice=createSlice({
     name:'UI',
     initialState:{
-        menuDisplay:false
+        menuDisplay:false,
+        selectDisplay:false
     },
     reducers:{
         ondisplayMenu(state){
@@ -13,6 +14,12 @@ const uiSlice=createSlice({
         },
         onCloseMenu(state){
            state.menuDisplay=false
+        },
+        ondisplaySelect(state){
+           state.selectDisplay=!state.selectDisplay
+        },
+        onCloseSelect(state){
+           state.selectDisplay=false
         }
     }
 })

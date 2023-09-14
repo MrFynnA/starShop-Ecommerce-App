@@ -2,15 +2,22 @@ import styles from './AuthForm.module.css'
 import MyButton from '../UI/Button'
 import { Visible } from '../UI/VisibleEyes'
 import { NotVisible } from '../UI/VisibleEyes'
-import { useRef, useState } from 'react'
-import { Link, redirect } from 'react-router-dom'
-import { useSearchParams,useActionData,useNavigation } from 'react-router-dom'
+import {useState } from 'react'
+import {
+    useSearchParams,
+    useActionData,
+    useNavigation,
+    Form,
+    Link, 
+    redirect  } from 'react-router-dom'
 import { useEffect } from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 import { signUpAction } from '../store/slices/authSlice'
-import { useSubmit,Form,json } from 'react-router-dom'
 import { auth } from '../../config/firebse-config'
 import { signInWithEmailAndPassword } from 'firebase/auth'
+import { emailCheck } from '../util/util'
+import { passwordCheck } from '../util/util'
+import { checkPasswordEquality } from '../util/util'
 
 
 const AuthForm=(props)=>{
@@ -25,13 +32,15 @@ const AuthForm=(props)=>{
     const[greenbarColor,setGreenBarColor]=useState(null)
     const[capacity,setCapacityText]=useState(null)
     const session=searchParam.get('sess')
-    const[email,setEmail]=useState()
-    const[firstname,setfirstName]=useState()
-    const[lastname,setlastName]=useState()
-    const[password,setPassword]=useState()
+    const[email,setEmail]=useState('')
+    const[firstname,setfirstName]=useState('')
+    const[lastname,setlastName]=useState('')
+    const[password,setPassword]=useState('')
     const[repassword,setrePassword]=useState()
+    const[EmailTouched,setEmailTouched]=useState(false)
+    const[firstnameTouched,setfirstnameTouched]=useState(false)
+    const[lastnameTouched,setlastnameTouched]=useState(false)
     const data=useActionData()
-    const submit=useSubmit()
     const navigation=useNavigation()
 
     
@@ -42,23 +51,15 @@ const AuthForm=(props)=>{
     const wrongCredentials=data && data.errorCred
     
     const submitting=navigation.state==='submitting'
-//submitting userData
 
-const submitUserData=()=>{
 
-        // if(userData.email.trim()==='' && userData.password.trim()==='' && userData.rePassword.trim()==='' && userData.firstname.trim()==='' &&  userData.lastname.trim()===''){
-        //     return
-        // }
-    
-    }
-
-    useEffect(()=>{
-if(successMessage){
-    setTimeout(()=>{
-        dispatch(signUpAction.getsuccessfulMessage(null))
-    },8000)
-}
-    },[successMessage])
+//     useEffect(()=>{
+// if(successMessage){
+//     setTimeout(()=>{
+//         dispatch(signUpAction.getsuccessfulMessage(null))
+//     },8000)
+// }
+//     },[successMessage])
 
     const isLogin=searchParam.get('sess')==='login'
 
@@ -70,9 +71,20 @@ if(successMessage){
             setButtonText('CONTINUE')
         }
     },[isLogin])
-
+    
+    const firstnameValid=firstname.length!==''      
+    const LastnameValid=lastname!==''      
+    const correctEmail=emailCheck(email)
  const moveToNextForm=()=>{
+    setEmailTouched(true)
+    setfirstnameTouched(true)
+    setlastnameTouched(true)
     if(buttonText==='CONTINUE'){
+
+if(!firstnameValid || !LastnameValid || !correctEmail){
+    return
+}
+
         dispatch(signUpAction.onShowFinalSignUpForm())
         setSlideRight(true)
         setTimeout(()=>{
@@ -146,14 +158,17 @@ const visibleStatus=visible==='password'? <NotVisible onClick={()=>setVisibility
 //Getting input Values
 const onGetEmail=(event)=>{
     setEmail(event.target.value)
+    setEmailTouched(false)
 }
 const onGetfirstname=(event)=>{
     setfirstName(event.target.value)
+    setfirstnameTouched(false)
+    
     
 }
 const onGetlastname=(event)=>{
     setlastName(event.target.value)
-    
+    setlastnameTouched(false)
 }
 
 const onGetrePassword=(event)=>{
@@ -161,19 +176,22 @@ const onGetrePassword=(event)=>{
 
 }
 
+
+
 const submitData=()=>{
     if(isLogin){
         return
     }
-
-
+    
     const userData={
-      email:email,
-      firstname:firstname,
-      lastname:lastname,
-      password:password,
-      repassword:repassword
-    }
+        email:email,
+        firstname:firstname,
+        lastname:lastname,
+        password:password,
+        repassword:repassword
+      }
+
+
 
     props.userCred(userData)
 
@@ -194,8 +212,9 @@ return(
         
         <div>
             <label htmlFor="Email">Email:</label>
-       <span className={`${styles.formInput} ${emailError && data.emailMessage && '!border-red-600' } relative`}><input type="email" name="email"  placeholder='Email' value={email} onChange={onGetEmail} id="email"/>
+       <span className={`${styles.formInput} ${((emailError && data.emailMessage)||(!isLogin && !correctEmail && EmailTouched)) && '!border-red-600' } relative`}><input type="email" name="email"  placeholder='Email' value={email} onChange={onGetEmail} id="email"/>
        <p className='text-[12px] absolute top-11 text-red-600'>{emailError && data.emailMessage}</p>
+       {!isLogin && !correctEmail && EmailTouched && <p className='text-[12px] absolute top-11 text-red-600'>Please enter a valid email</p>}
        </span>
         </div>
         {isLogin && <div className='mt-2'>
@@ -203,14 +222,6 @@ return(
       <span className={`${styles.formInput} ${passwordError && data.passwordMessage && '!border-red-600' } relative`}><input  name="password" type={visible} placeholder='Password' id="password"/>{visibleStatus}
       <p className='text-[12px] absolute top-11 text-red-600'>{passwordError && data.passwordMessage}</p>
       </span> 
-     {/* {!isLogin && <div className='flex justify-between items-center h-2  mt-4 px-2'>
-        <div className='flex justify-start items-center gap-2'>
-        <div className={`${redbarColor} ${yellowbarColor} ${greenbarColor} w-16 h-1 rounded-md`}></div>
-        <div className={`${yellowbarColor} ${greenbarColor} w-16 h-1 rounded-md`}></div>
-        <div className={`${greenbarColor} w-16 h-1 rounded-md`}></div>
-        </div>
-        <div className='text-[12px]'>{capacity}</div>
-      </div>} */}
         </div>}
        {!isLogin && 
        <>
@@ -286,16 +297,15 @@ const userDetails={
     password:requestData.get('password')
 
 }
-//  const checkEmailwrong=touched && userDetails.email.trim()===''
 const searchParam=new URL(request.url).searchParams
 const session=searchParam.get('sess')
 
    if(session==='login'){
 
     console.log('nigga man')
-    const correctEmail= userDetails.email.trim()!=='' && userDetails.email.trim().includes('.co') && (userDetails.email.trim().includes('@gmail') ||userDetails.email.trim().includes('@yahoo')||userDetails.email.trim().includes('@ymail'))
+    const correctEmail= emailCheck(userDetails.email)
 
-const correctPassword=userDetails.password!==''
+     const correctPassword=passwordCheck(userDetails.password)
 
 if(!correctEmail || !correctPassword ){
     return {error:true,
@@ -303,7 +313,6 @@ if(!correctEmail || !correctPassword ){
         passwordMessage:!correctPassword?'Please enter a valid password':null
 }
   }
-  console.log('yessir boss')
     try{
         const res=await signInWithEmailAndPassword(auth,userDetails.email,userDetails.password)
          
@@ -321,9 +330,6 @@ if(!correctEmail || !correctPassword ){
             errorCred:true, message:'Email or password is incorrect'
          }
     }
-    
-
-   
 
    }else if(session==='signup'){
     return null
@@ -334,8 +340,4 @@ if(!correctEmail || !correctPassword ){
     },10000)
    }
     
-    // const user={
-    //     email:userDetails.get('email'),
-    //     password:userDetails.get('password')
-    // }
 }

@@ -24,6 +24,7 @@ const Products = (props) => {
   const category=useSelector(state=>state.searchTerm.category)
   const ctx=useContext(CartContext)
   const{onAddItem,cartItems,totalAmount}=ctx
+  console.log(props.error)
   // const dummPro=[
   //   {
   //     id:1,
@@ -176,7 +177,14 @@ const Products = (props) => {
       <div className='max-md:text-sm'>Happy Shopping....Shop here and get Amazing discounts!</div>
      </div>
  <ul>
-      {items}
+      {props.error && props.error.includes('Failed to fetch')?(<div className={classes.noSearchElements}>
+        <BinoSearchIcon/>
+        <div className={classes.nosearchFound}>
+        <NoSearchIcon/>
+  <p className={classes.interneterrorMsg}>Please check Internet Connection</p>
+        </div>
+        <p style={{textAlign:'center'}}><button className={classes.tryAgainBtn} onClick={props.onTryAgain}>Try Again</button></p>
+        </div>):items}
 
  </ul>
 

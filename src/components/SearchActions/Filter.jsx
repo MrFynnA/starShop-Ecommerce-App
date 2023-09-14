@@ -1,26 +1,42 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import classes from './Filter.module.css'
 import FilterIcon from "../UI/Filter-icon"
-import {useDispatch} from 'react-redux'
-import { useRef } from "react"
-import SearchActions from "./SeachActions"
+import {useDispatch,useSelector} from 'react-redux'
 import { searchAction } from "../store/redStore"
 import DownArrow from "../UI/DownArrow"
+// import { useSelector } from "react-redux"
+import { useMouseOutClickSpecific } from "../../hooks/mouseDownSpecific"
 
 const Filter=()=>{
-const category=useRef()
+// const category=useRef()
 const dispatch=useDispatch()
 const[isVisible,setIsvisible]=useState(false)
+const {domRef:dropDownRef}=useMouseOutClickSpecific(()=>setIsvisible(false))
+const[selected,setSelected]=useState('select...')
+const currentCategory=useSelector(state=>state.searchTerm.category)
+useEffect(()=>{
+    //when you click on try again and theres a dispatch to set category to null
+    //here i also set it back to select..
+if(currentCategory===null){
+        setSelected('select...')
+    }
+},[currentCategory])
+const categoryOptions=['All','Smartphones','Laptops','Fragrances','Skincare','Groceries','Home decoration']
 
-const onChangeCat=()=>{
-    const categories=category.current.value
-    if(categories){
+const categories=selected
+
+useEffect(()=>{
+    if(categories && categories!=='select...' && categories!=='All'){
         dispatch({type:searchAction.UPDATECategory,payload:categories})
     }
     if(categories==='All'){
+        setSelected('select...')
         dispatch({type:searchAction.UPDATECategory,payload:null})
     }
-}
+},[categories,dispatch])
+
+
+
 
 return(
     <React.Fragment>
@@ -31,32 +47,18 @@ return(
 <FilterIcon/>
         <div className="text-white ml-4">{'Categories'}</div>
             </div>
-        <div className={`${classes.dropdown} max-md:!w-[150px]`}>
-            <div className={`${classes.dropDownBtn} rounded-md max-md:z-!5`} onClick={()=>setIsvisible(prev=>!prev)}>choose<DownArrow/></div>
-            {isVisible && <div className={`${classes['dropDown-Content']} rounded-b-md font-sans max-md:!top-[73%]`}>
-            <div className={classes['dropDown-item']}>
-                All
-            </div>
-            <div className={classes['dropDown-item']}>
-                Smartphones
-            </div>
-            <div className={classes['dropDown-item']}>
-                Laptops
-            </div>
-            <div className={classes['dropDown-item']}>
-                Fragrances
-            </div>
-            <div className={classes['dropDown-item']}>
-                Skincare
-            </div>
-            <div className={classes['dropDown-item']}>
-                Groceries
-            </div>
-            <div className={classes['dropDown-item']}>
-                Home decoration
-            </div>
+        <div ref={dropDownRef}  onClick={()=>{}} className={`${classes.dropdown} max-md:!w-[150px]`}>
+            <div  className={`${classes.dropDownBtn} rounded-md max-md:z-!5`} onClick={()=>setIsvisible(prev=>!prev)}>{selected}<DownArrow/></div>
+            {isVisible && <div  onClick={()=>{}}  className={`${classes['dropDown-Content']} rounded-b-md font-sans max-md:!top-[73%]`}>
+           {categoryOptions.map(items=><div  key={items} onClick={()=>{
+            setSelected(items)
+            setIsvisible(false)
+        }
+        
+        } className={classes['dropDown-item']}>
+                {items}
+            </div>)}
 
-   
              </div>}
             </div>    
         </div>

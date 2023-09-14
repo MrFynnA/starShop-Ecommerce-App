@@ -8,18 +8,25 @@ import useHttps from './hooks/use-https';
 import { useSelector,useDispatch } from 'react-redux';
 import CartContext from './components/CartContext/CartContext';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import AuthSection from './components/UserLogin/Auth';
+// import AuthSection from './components/UserLogin/Auth';
 import HomeProducts from './components/Shop/Products';
 import { action } from './components/UserLogin/AuthForm';
 import { tokenLoader } from './components/util/util';
 import { action as signOutAction } from './components/UserLogin/LogoutUser';
 import { checkTokenLoader } from './components/util/util';
+import { searchAction } from './components/store/redStore';
+import { lazy } from 'react';
+import { Suspense } from 'react';
+import { LoaderSpinner } from './components/UI/LoaderSpinner';
+const AuthSection=lazy(()=>import('./components/UserLogin/Auth'))
 // import SearchActions from './components/SearchActions/SeachActions';
 let refreshPage=true
 function App() {
   const dispatch=useDispatch()
   const ctx=useContext(CartContext)
   const{totalAmount,cartItems,totalAfterDisCount,cartChanged}=ctx
+
+
   const cartItemsToBeSent=useMemo(()=>{
 return {
     ItemsInCart:cartItems,
@@ -88,7 +95,8 @@ if(cartChanged===true){
 
   const tryAgain=()=>{
     itemRequest({url:'https://dummyjson.com/products'})
-  
+    dispatch({type:searchAction.UPDATECategory,payload:null})
+
   }
 
   const router=createBrowserRouter([
@@ -102,7 +110,7 @@ if(cartChanged===true){
         {
           path:'logout',
         action:signOutAction},
-        {path:'session', element:<AuthSection/>,
+        {path:'session', element:<Suspense fallback={<LoaderSpinner/>}><AuthSection/></Suspense>,
         action:action,
         loader:checkTokenLoader
       
