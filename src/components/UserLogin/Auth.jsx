@@ -10,7 +10,7 @@ import { signUpAction } from "../store/slices/authSlice"
 
 const AuthSection=()=>{
       const[searchParam]=useSearchParams()
-      const isLogin=searchParam.get('sess')
+      const isLogin=searchParam.get('sess')==='login'
       const navigate=useNavigate()
       const dispatch=useDispatch()
 

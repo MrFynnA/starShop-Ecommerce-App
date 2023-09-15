@@ -9,7 +9,8 @@ import {
     useNavigation,
     Form,
     Link, 
-    redirect  } from 'react-router-dom'
+    redirect,
+useNavigate  } from 'react-router-dom'
 import { useEffect } from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 import { signUpAction } from '../store/slices/authSlice'
@@ -18,7 +19,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import { emailCheck } from '../util/util'
 import { passwordCheck } from '../util/util'
 import { checkPasswordEquality } from '../util/util'
-
+import { SuccessSign } from '../UI/SuccessSign'
 
 const AuthForm=(props)=>{
     const dispatch=useDispatch()
@@ -36,12 +37,16 @@ const AuthForm=(props)=>{
     const[firstname,setfirstName]=useState('')
     const[lastname,setlastName]=useState('')
     const[password,setPassword]=useState('')
-    const[repassword,setrePassword]=useState()
+    const[repassword,setrePassword]=useState('')
     const[EmailTouched,setEmailTouched]=useState(false)
     const[firstnameTouched,setfirstnameTouched]=useState(false)
     const[lastnameTouched,setlastnameTouched]=useState(false)
+    const[submitTouched,setSubmitTouched]=useState(false)
+    const[EmailError,setEmailError]=useState(false)
     const data=useActionData()
     const navigation=useNavigation()
+    const navigate=useNavigate()
+    const allVisibleStat= useSelector(state=>state.uiDisplay.allVisibleStatus)
 
     
     const nexForm=useSelector(state=>state.signUp.nextSignUpForm)
@@ -49,17 +54,40 @@ const AuthForm=(props)=>{
     const emailError=data && data.error
     const passwordError=data && data.error
     const wrongCredentials=data && data.errorCred
+
     
     const submitting=navigation.state==='submitting'
 
+    useEffect(()=>{
+        if(data && data.emailMessage){
+            setEmailError(true)
+        }
 
-//     useEffect(()=>{
-// if(successMessage){
-//     setTimeout(()=>{
-//         dispatch(signUpAction.getsuccessfulMessage(null))
-//     },8000)
-// }
-//     },[successMessage])
+    },[data])
+
+
+    useEffect(()=>{
+if(successMessage){
+    setTimeout(()=>{
+        dispatch(signUpAction.onCloseFinalSignUpForm())
+        setVisibility('password')
+        setChecked(false)
+        navigate('/session?sess=login')
+        dispatch(signUpAction.getsuccessfulMessage(null))
+    },2200)
+
+    
+}
+    },[successMessage,dispatch,navigate])
+
+    useEffect(()=>{
+        if(!allVisibleStat){
+             setVisibility('password')
+        setChecked(false)
+        setSubmitTouched(false)
+}
+  },[allVisibleStat,dispatch])
+   
 
     const isLogin=searchParam.get('sess')==='login'
 
@@ -72,19 +100,22 @@ const AuthForm=(props)=>{
         }
     },[isLogin])
     
-    const firstnameValid=firstname.length!==''      
+    const firstnameValid=firstname.length!==0      
     const LastnameValid=lastname!==''      
     const correctEmail=emailCheck(email)
+    const correctPassword=passwordCheck(password)
+    const correctPassword2=passwordCheck(repassword)
+    const equalPasswords=checkPasswordEquality(password,repassword)
  const moveToNextForm=()=>{
     setEmailTouched(true)
     setfirstnameTouched(true)
     setlastnameTouched(true)
     if(buttonText==='CONTINUE'){
+       
 
 if(!firstnameValid || !LastnameValid || !correctEmail){
     return
 }
-
         dispatch(signUpAction.onShowFinalSignUpForm())
         setSlideRight(true)
         setTimeout(()=>{
@@ -97,21 +128,29 @@ if(!firstnameValid || !LastnameValid || !correctEmail){
  const goBackToFirstSignUpForm=()=>{
     dispatch(signUpAction.onCloseFinalSignUpForm())
     setSlideRight(true)
-          
-          setTimeout(()=>{
-            
-            setSlideRight(false)
-          },500)
-          setGreenBarColor(null)
+    setTimeout(()=>{
+        
+        setSlideRight(false)
+    },500)
+    setSubmitTouched(false)
+    setGreenBarColor(null)
           setYellowBarColor(null)
           setRedBarColor(null)  
           setCapacityText(null)
           setChecked(false) 
           setVisibility('password')
  }
-
+//when i there's a change in navigation
     useEffect(()=>{
         setSlideRight(true)
+        setfirstName('')
+        setEmail('')
+        setlastName('')
+        setPassword('')
+        setrePassword('')
+        setfirstnameTouched(false)
+        setEmailTouched(false)
+        setlastnameTouched(false)
           
           setTimeout(()=>{
             
@@ -124,6 +163,7 @@ if(!firstnameValid || !LastnameValid || !correctEmail){
       }
 //checking password strength
       const onGetPassword=(event)=>{
+        setSubmitTouched(false)
         setPassword(event.target.value)
         if((event.target.value.trim().length<=25 && event.target.value.trim().search(/[A-Z]/)<0) || (event.target.value.trim().length<6 && /[A-Z]/.test(event.target.value.trim()))){
            setRedBarColor(styles.redBarColor)
@@ -159,6 +199,8 @@ const visibleStatus=visible==='password'? <NotVisible onClick={()=>setVisibility
 const onGetEmail=(event)=>{
     setEmail(event.target.value)
     setEmailTouched(false)
+    setEmailError(false)
+   
 }
 const onGetfirstname=(event)=>{
     setfirstName(event.target.value)
@@ -173,26 +215,33 @@ const onGetlastname=(event)=>{
 
 const onGetrePassword=(event)=>{
     setrePassword(event.target.value)
+    setSubmitTouched(false)
+
 
 }
 
 
 
 const submitData=()=>{
-    if(isLogin){
-        return
+       
+
+    if(!isLogin){
+        setSubmitTouched(true)
     }
-    
+
     const userData={
         email:email,
         firstname:firstname,
         lastname:lastname,
         password:password,
         repassword:repassword
-      }
+    }
+    const passWordEqual=checkPasswordEquality(userData.password,userData.repassword)
+    if(isLogin || !passWordEqual){
+          return
+        }
 
-
-
+console.log('i made it')
     props.userCred(userData)
 
 }
@@ -212,8 +261,8 @@ return(
         
         <div>
             <label htmlFor="Email">Email:</label>
-       <span className={`${styles.formInput} ${((emailError && data.emailMessage)||(!isLogin && !correctEmail && EmailTouched)) && '!border-red-600' } relative`}><input type="email" name="email"  placeholder='Email' value={email} onChange={onGetEmail} id="email"/>
-       <p className='text-[12px] absolute top-11 text-red-600'>{emailError && data.emailMessage}</p>
+       <span className={`${styles.formInput} ${((EmailError && emailError && data.emailMessage)||(!isLogin && !correctEmail && EmailTouched)) && '!border-red-600' } relative`}><input type="email" name="email"  placeholder='Email' value={email} onChange={onGetEmail} id="email"/>
+       <p className='text-[12px] absolute top-11 text-red-600'>{EmailError &&emailError && data.emailMessage}</p>
        {!isLogin && !correctEmail && EmailTouched && <p className='text-[12px] absolute top-11 text-red-600'>Please enter a valid email</p>}
        </span>
         </div>
@@ -227,11 +276,15 @@ return(
        <>
        <div>
             <label htmlFor="FisrtName">First Name:</label>
-       <span className={styles.formInput}><input value={firstname}  type="text" placeholder='First name' name='firstname' onChange={onGetfirstname} id="firstname"/></span>
+       <span className={`${styles.formInput} ${!isLogin && !firstnameValid && firstnameTouched && '!border-red-600' }`}><input value={firstname}  type="text" placeholder='First name' name='firstname' onChange={onGetfirstname} id="firstname"/>
+       {!isLogin && !firstnameValid && firstnameTouched && <p className='text-[12px] absolute top-11 text-red-600'>Please enter a valid first name</p>}
+       </span>
         </div>
         <div>
             <label htmlFor="LastName">Last Name:</label>
-       <span className={styles.formInput}><input type="text" placeholder='Last name' name='lastname' onChange={onGetlastname} value={lastname} id="lastname"/></span>
+       <span className={`${styles.formInput}  ${!isLogin && !LastnameValid && lastnameTouched && '!border-red-600' }`}><input type="text" placeholder='Last name' name='lastname' onChange={onGetlastname} value={lastname} id="lastname"/>
+       {!isLogin && !LastnameValid && lastnameTouched && <p className='text-[12px] absolute top-11 text-red-600'>Please enter a valid last name</p>}
+       </span>
         </div>
        </>
         
@@ -246,7 +299,9 @@ return(
             </div>
         </div>}
         {nexForm && <div className={slideRight && styles.slideRight}>
-           <div className='text-center font-bold italic text-sm'>{successMessage ? <p className='text-green-600'>Sign Up Successful</p>:'Lets get you on board...'}</div>
+           <div className='text-center font-bold italic text-sm'>{successMessage ? <div className='flex justify-center items-center gap-2'><SuccessSign/><p className='text-green-700 font-serif'>Sign Up Successful</p></div>:'Lets get you on board...'}
+           {(correctPassword || correctPassword2) && nexForm && correctPassword && submitTouched && !equalPasswords && <div className='text-center font-bold relative top-3 italic text-[12px] text-red-600 border-2 border-red-300'>Passwords do not match</div>}
+           </div>
 
             <div className={styles.loginForm}>
             <div>

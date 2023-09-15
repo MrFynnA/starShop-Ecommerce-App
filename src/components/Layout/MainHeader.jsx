@@ -6,20 +6,35 @@ import { Form } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
 import { signUpAction } from '../store/slices/authSlice';
 import UserAccount from '../Account/userAccount';
+import { uiActions } from '../store/slices/UISlice';
+import { useEffect } from 'react';
 
 
 const MainHeader = (props) => {
   const navigate=useNavigate()
   const dispatch=useDispatch()
   const receivedTokenStatus=props.tokenId
+  const allVisibleStat= useSelector(state=>state.uiDisplay.allVisibleStatus)
  
 
 
   const triggerCloseFinalForm=()=>{
        dispatch(signUpAction.onCloseFinalSignUpForm())
        navigate('session?sess=login')
-  
-  }
+       dispatch(uiActions.setAllVisibleStatus(false))
+       
+      }
+      
+      useEffect(()=>{
+        if(!allVisibleStat){
+          setTimeout(()=>{
+
+            dispatch(uiActions.setAllVisibleStatus(true))
+          },1000)
+}
+  },[allVisibleStat,dispatch])
+
+
   return (
     <header className={classes.header}>
       <div onClick={()=>navigate('/')} className={`text-4xl font-bold ${classes.SiteTitle}`}><h1>StarShopify</h1></div>
