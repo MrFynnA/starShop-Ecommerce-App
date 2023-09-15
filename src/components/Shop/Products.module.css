@@ -197,12 +197,12 @@
                     transform: translateY(-4rem) translateX(-1rem);
                 } */
             
-            [imageTitle] {
+            [imagetitle] {
                 position: relative;
             }
             
-            [imageTitle]:hover::after {
-                content: attr(imageTitle);
+            [imagetitle]:hover::after {
+                content: attr(imagetitle);
                 width: 100%;
                 position: absolute;
                 background-color: #00000066 !important;
@@ -232,8 +232,8 @@
                 .imageBox {
                     min-width: 180px !important;
                 }
-                [imageTitle]::after {
-                    content: attr(imageTitle);
+                [imagetitle]::after {
+                    content: attr(imagetitle);
                     width: 100%;
                     position: absolute;
                     background-color: #00000066 !important;

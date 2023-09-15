@@ -11,7 +11,6 @@ import { useSearchParams } from 'react-router-dom';
 
 const Layout = (props) => {
 const token=useLoaderData()
-console.log(token)
 const dispatch=useDispatch()
 const userMenu=useSelector(state=>state.uiDisplay.menuDisplay)
 const [URLsearchParams]=useSearchParams()

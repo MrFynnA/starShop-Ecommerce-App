@@ -11,14 +11,12 @@ const ProductItem = (props) => {
   const ctx=useContext(CartContext)
   const{onAddItem,onRemoveItemTotally}=ctx
   const { title, price, description,image,id } = props;
-  // console.log(price)
 
   const particularCartItems=props.cartItems.filter(item=>item.id===id)
   const newItemForRemoval={
     ...particularCartItems[0],
     price:particularCartItems.length>0 && particularCartItems[0].price*particularCartItems[0].amount
   }
-  // console.log(newItemForRemoval)
   const cartItemsToReducer={
     id:id,
     title:title,

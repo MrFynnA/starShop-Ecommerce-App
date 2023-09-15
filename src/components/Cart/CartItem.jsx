@@ -13,7 +13,6 @@ const CartItem = (props) => {
     ...props,
     amount:1
   }
-  // console.log(existNewItem)
 const addExistItem=()=>{
     onAddItem(existNewItem)
 }

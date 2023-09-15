@@ -43,6 +43,10 @@ const AuthForm=(props)=>{
     const[lastnameTouched,setlastnameTouched]=useState(false)
     const[submitTouched,setSubmitTouched]=useState(false)
     const[EmailError,setEmailError]=useState(false)
+    const[PasswordError,setPasswordError]=useState(false)
+    const[passwordTouched,setPasswordTouched]=useState(false)
+    const[repasswordTouched,setrePasswordTouched]=useState(false)
+    const[returnedErrorMessage,setReturnedErrorMessage]=useState('')
     const data=useActionData()
     const navigation=useNavigation()
     const navigate=useNavigate()
@@ -51,16 +55,36 @@ const AuthForm=(props)=>{
     
     const nexForm=useSelector(state=>state.signUp.nextSignUpForm)
     const successMessage=useSelector(state=>state.signUp.successfulmessage)
+    const errorMessage=useSelector(state=>state.signUp.errormessage)
     const emailError=data && data.error
     const passwordError=data && data.error
     const wrongCredentials=data && data.errorCred
+    const resLoading=props.reponseLoading
 
     
     const submitting=navigation.state==='submitting'
 
+    //checking for error message returned
     useEffect(()=>{
-        if(data && data.emailMessage){
+          if(errorMessage?.includes('email-already')){
+            setReturnedErrorMessage('email exist already')
+          }
+          if(errorMessage?.includes('missing-email')){
+            setReturnedErrorMessage('re-enter email again')
+            
+          }
+          if(errorMessage?.includes('password')){
+            setReturnedErrorMessage('Password should be atleast 6 characters')
+          }
+    },[errorMessage])
+
+    //to clear error when user starts typing again
+    useEffect(()=>{
+        if(data && data.emailMessage?.includes('valid')){
             setEmailError(true)
+        }
+        if(data && data.passwordMessage?.includes('valid')){
+            setPasswordError(true)
         }
 
     },[data])
@@ -68,6 +92,8 @@ const AuthForm=(props)=>{
 
     useEffect(()=>{
 if(successMessage){
+    setReturnedErrorMessage('')
+    dispatch(signUpAction.geterrorMessage(null))
     setTimeout(()=>{
         dispatch(signUpAction.onCloseFinalSignUpForm())
         setVisibility('password')
@@ -117,6 +143,9 @@ if(!firstnameValid || !LastnameValid || !correctEmail){
     return
 }
         dispatch(signUpAction.onShowFinalSignUpForm())
+        setPasswordTouched(false)
+        setrePasswordTouched(false)
+        setReturnedErrorMessage(null)
         setSlideRight(true)
         setTimeout(()=>{
             
@@ -132,8 +161,10 @@ if(!firstnameValid || !LastnameValid || !correctEmail){
         
         setSlideRight(false)
     },500)
+    dispatch(signUpAction.geterrorMessage(null))
     setSubmitTouched(false)
     setGreenBarColor(null)
+    setReturnedErrorMessage(null)
           setYellowBarColor(null)
           setRedBarColor(null)  
           setCapacityText(null)
@@ -165,6 +196,8 @@ if(!firstnameValid || !LastnameValid || !correctEmail){
       const onGetPassword=(event)=>{
         setSubmitTouched(false)
         setPassword(event.target.value)
+        setPasswordTouched(false)
+        setrePasswordTouched(false) //so that on password being true after signUp is clicked we dont see an error saying repeat pssword, it should display only when you click on signup
         if((event.target.value.trim().length<=25 && event.target.value.trim().search(/[A-Z]/)<0) || (event.target.value.trim().length<6 && /[A-Z]/.test(event.target.value.trim()))){
            setRedBarColor(styles.redBarColor)
            setYellowBarColor(null)
@@ -216,8 +249,13 @@ const onGetlastname=(event)=>{
 const onGetrePassword=(event)=>{
     setrePassword(event.target.value)
     setSubmitTouched(false)
+    setrePasswordTouched(false)
 
+}
 
+//just to clear login password error when user typing
+const ListenForPasswordChange=(event)=>{
+    setPasswordError(false)
 }
 
 
@@ -227,6 +265,8 @@ const submitData=()=>{
 
     if(!isLogin){
         setSubmitTouched(true)
+        setPasswordTouched(true)
+        setrePasswordTouched(true)
     }
 
     const userData={
@@ -241,7 +281,6 @@ const submitData=()=>{
           return
         }
 
-console.log('i made it')
     props.userCred(userData)
 
 }
@@ -255,9 +294,9 @@ return(
             {!nexForm && <div className={`${styles.innerLoginForm} ${slideRight && styles.slideRight}`}>
             {wrongCredentials && <div className='text-center font-bold italic text-[12px] text-red-600 border-2 border-red-300'>{data.message}</div>}
             <div className={styles.loginForm}>
-           <div className='relative mb-[-1rem]'>
-            {submitting && <div className={`${styles.submitText} font-bold max-md:bottom-[4rem] bottom-14 text-xl text-[#04b1d4]`}>●</div>}
-           </div>
+         
+           {submitting && <div className={`${styles.submitText} font-bold bottom-8 text-xl absolute text-[#04b1d4]`}>●</div>}
+
         
         <div>
             <label htmlFor="Email">Email:</label>
@@ -268,8 +307,8 @@ return(
         </div>
         {isLogin && <div className='mt-2'>
             <label htmlFor="password">Password:</label>
-      <span className={`${styles.formInput} ${passwordError && data.passwordMessage && '!border-red-600' } relative`}><input  name="password" type={visible} placeholder='Password' id="password"/>{visibleStatus}
-      <p className='text-[12px] absolute top-11 text-red-600'>{passwordError && data.passwordMessage}</p>
+      <span className={`${styles.formInput} ${PasswordError && passwordError && data.passwordMessage && '!border-red-600' } relative`}><input  name="password" type={visible} onChange={ListenForPasswordChange} placeholder='Password' id="password"/>{visibleStatus}
+      <p className='text-[12px] absolute top-11 text-red-600'>{PasswordError && passwordError && data.passwordMessage}</p>
       </span> 
         </div>}
        {!isLogin && 
@@ -298,15 +337,20 @@ return(
          <Link to={`?sess=${isLogin && 'signup'}`} className={`${styles.creatAcc} underline`}>{isLogin?'create account':''}</Link>
             </div>
         </div>}
-        {nexForm && <div className={slideRight && styles.slideRight}>
-           <div className='text-center font-bold italic text-sm'>{successMessage ? <div className='flex justify-center items-center gap-2'><SuccessSign/><p className='text-green-700 font-serif'>Sign Up Successful</p></div>:'Lets get you on board...'}
+        {nexForm && <div className={`${slideRight && styles.slideRight}`}>
+           <div className='text-center font-bold italic text-sm relative top-2'>{successMessage ? <div className='flex justify-center items-center gap-2'><SuccessSign/><p className='text-green-700 font-sans'>Sign Up Successful</p></div>:'Lets get you on board...'}
            {(correctPassword || correctPassword2) && nexForm && correctPassword && submitTouched && !equalPasswords && <div className='text-center font-bold relative top-3 italic text-[12px] text-red-600 border-2 border-red-300'>Passwords do not match</div>}
+           {returnedErrorMessage && <div className='text-center font-bold relative top-3 italic text-[12px] text-red-600 border-2 border-red-300'>{returnedErrorMessage}</div>}
            </div>
 
             <div className={styles.loginForm}>
+            {!isLogin && resLoading && <div className={`${styles.submitText} font-bold max-md:bottom-[4rem] absolute bottom-16 text-xl text-[#04b1d4]`}>●</div>}
+       
             <div>
             <label htmlFor="password">Password:</label>
-      <span className={styles.formInput}><input  name="password" type={visible} placeholder='Password' value={password} id="password" onChange={onGetPassword}/>{visibleStatus}</span> 
+      <span className={styles.formInput}><input  name="password" type={visible} placeholder='Password' value={password} id="password" onChange={onGetPassword}/>{visibleStatus}
+      {!isLogin && !correctPassword && passwordTouched && <p className='text-[12px] absolute top-11 text-red-600'>Please enter a valid password</p>}
+      </span> 
      <div className='flex justify-between items-center h-2  mt-4 px-2'>
         <div className='flex justify-start items-center gap-2'>
         <div className={`${redbarColor} ${yellowbarColor} ${greenbarColor} w-16 h-1 rounded-md`}></div>
@@ -318,7 +362,9 @@ return(
         </div>
             <div className='mt-[-0.5rem] max-md:mt-[-0.4rem]'>
             <label htmlFor="passwordrepeat">Re-enter Password:</label>
-      <span className={styles.formInput}><input type={visible} value={repassword} name="passwordrepeat"  placeholder='Repeat Password' onChange={onGetrePassword} id="passwordrepeat"/>{visibleStatus}</span> 
+      <span className={styles.formInput}><input type={visible} value={repassword} name="passwordrepeat"  placeholder='Repeat Password' onChange={onGetrePassword} id="passwordrepeat"/>{visibleStatus}
+      {!isLogin && correctPassword && !correctPassword2 && repasswordTouched && <p className='text-[12px] absolute top-11 text-red-600'>Please repeat password</p>}
+      </span> 
         </div>
        
         </div>
@@ -345,7 +391,6 @@ export default AuthForm
 
 
 export const action=async({request,params})=>{
-    console.log('i run but failed')
 const requestData=await request.formData()
 const userDetails={
     email:requestData.get('email'),
@@ -356,8 +401,6 @@ const searchParam=new URL(request.url).searchParams
 const session=searchParam.get('sess')
 
    if(session==='login'){
-
-    console.log('nigga man')
     const correctEmail= emailCheck(userDetails.email)
 
      const correctPassword=passwordCheck(userDetails.password)

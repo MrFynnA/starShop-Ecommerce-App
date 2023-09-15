@@ -7,7 +7,6 @@ export const action=async()=>{
         await signOut(auth)
 
     }catch(error){
-        console.log(error.message)
     }
     localStorage.removeItem('localId_token')
     return redirect('/')

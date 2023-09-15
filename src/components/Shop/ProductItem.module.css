@@ -18,7 +18,6 @@
 
 .item:hover {
     border: 5px dotted rgb(0, 175, 210);
-    /* border: 5px double rgb(210, 137, 0); */
     transition: 0.3s;
     cursor: pointer;
     padding: 1.5rem;

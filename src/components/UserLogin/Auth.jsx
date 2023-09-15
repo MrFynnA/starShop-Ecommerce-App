@@ -1,4 +1,4 @@
-import React from "react"
+import React,{useState} from "react"
 import AuthForm from "./AuthForm"
 import classes from './Auth.module.css'
 import Card from '../UI/Card'
@@ -13,6 +13,7 @@ const AuthSection=()=>{
       const isLogin=searchParam.get('sess')==='login'
       const navigate=useNavigate()
       const dispatch=useDispatch()
+      const[isLoading,setIsLoading]=useState(false)
 
     const onuserAuthOperation=async(userDetails)=>{
              const userSignUp={
@@ -20,23 +21,20 @@ const AuthSection=()=>{
                 password:userDetails.password
              }
                 
+             setIsLoading(true)
                  try{
                      const res=  await createUserWithEmailAndPassword(auth,userSignUp.email,userSignUp.password)
-                     console.log(userSignUp.password)
                   
-                  dispatch(signUpAction.getsuccessfulMessage('Sign Up Successful'))   
-                  console.log(res._tokenResponse.localId)    
-                  
+                  dispatch(signUpAction.getsuccessfulMessage('Sign Up Successful'))      
+                  setIsLoading(false)
 
                  }catch(error){
-                    console.log(error.message)
                    dispatch(signUpAction.geterrorMessage(error.message))
+                   setIsLoading(false)
                  }
 
            
     }
-
-    // console.log(auth?.currentUser?.uid)
 
 return (
     <React.Fragment>
@@ -48,7 +46,7 @@ return (
         borderradius={'10px'}
         className={classes.MainForm}>
             <h3 className={classes.loginTitle}>STAR SHOPIFY <sub className="font-mono font-bold text-lg">{isLogin?'Login':'SignUp'}</sub></h3>
-    <AuthForm userCred={onuserAuthOperation} />
+    <AuthForm userCred={onuserAuthOperation} reponseLoading={isLoading}/>
         </Card>
         </div>
       

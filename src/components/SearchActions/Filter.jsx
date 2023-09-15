@@ -4,11 +4,9 @@ import FilterIcon from "../UI/Filter-icon"
 import {useDispatch,useSelector} from 'react-redux'
 import { searchAction } from "../store/redStore"
 import DownArrow from "../UI/DownArrow"
-// import { useSelector } from "react-redux"
 import { useMouseOutClickSpecific } from "../../hooks/mouseDownSpecific"
 
 const Filter=()=>{
-// const category=useRef()
 const dispatch=useDispatch()
 const[isVisible,setIsvisible]=useState(false)
 const {domRef:dropDownRef}=useMouseOutClickSpecific(()=>setIsvisible(false))
@@ -62,16 +60,6 @@ return(
              </div>}
             </div>    
         </div>
-         {/* <div className={`${classes.Filter} mb-[1.5rem] max-md:mb-0 text-sm`} onChange={onChangeCat} ref={category}>
-        <option>All</option>
-        <option>smartphones</option>
-        <option>laptops</option>
-        <option>fragrances</option>
-        <option>skincare</option>
-        <option>groceries</option>
-        <option>home decoration</option>
-    </div>
-             */}
     </React.Fragment>
     
 )

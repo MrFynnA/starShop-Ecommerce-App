@@ -11,20 +11,16 @@ import ImageSlider from '../ImageSlider/ImageSlider';
 import { sliderImages } from '../ImageSlider/sliderImages/images';
 import Filter from '../SearchActions/Filter';
 import { sideImages } from './sideProImages';
-import CallingIC from '../UI/calling-icon';
 
 
 
 
 const Products = (props) => {
-  // const itemss=useSelector(state=>state.cartData.totalAmount)
-  // console.log(itemss)
 
   const searchTerm=useSelector(state=>state.searchTerm.searchValue)
   const category=useSelector(state=>state.searchTerm.category)
   const ctx=useContext(CartContext)
   const{onAddItem,cartItems,totalAmount}=ctx
-  console.log(props.error)
   // const dummPro=[
   //   {
   //     id:1,
@@ -81,13 +77,6 @@ const Products = (props) => {
   const products=props.productData
   products.length===100 && products.shift()
 
-  // const newProducts=
-  // console.log(newProducts)
-
-  // let productsItems=dummPro
-  // if(products.length!==0){
-  //   productsItems=products
-  // }
   let items=products.map(items=><ProductItem
   id={items.id}
    key={items.id}
@@ -97,12 +86,7 @@ const Products = (props) => {
     description={items.description}
     cartItems={cartItems}
   />)
-  // console.log(props.error)
-  // if(props.error && products===[]){
-  //   items=<div className={classes.errorMessBox}><h1 style={{textAlign:'center'}}>{errorConnection}</h1><p style={{textAlign:'center'}}>{props.error}</p>
-  //   <a href='/'><p style={{textAlign:'center'}}><button>Try Again</button></p></a>
-  //   </div>
-  // }
+
   if(products.length===0){
     items=<div className={classes.noSearchElements}>
         <BinoSearchIcon/>
@@ -131,9 +115,8 @@ const Products = (props) => {
       {(searchTerm==='' || searchTerm===null) && (category==='' || category===null) && 
       <div className='w-full flex justify-center items-top gap-1'>
         <div className={`${classes.images} w-[15%] overflow-y-scroll bg-[#6de0f7] text-center text-white mt-[-1rem] max-lg:hidden flex flex-col gap-8 items-center `}>
-          {/* <div className='w-full'>call to place order</div> */}
           <div className='flex h-[400px] pt-[9rem]  flex-col  gap-4 items-center justify-center w-[72%] mt-5'>
-          {sideImages.map(items=><div className={classes.imageBox} imageTitle={items.title}><img className={`rounded-lg`} key={items.id} src={items.img[0]} alt={items.title}></img></div>)}
+          {sideImages.map(items=><div key={items.id} className={classes.imageBox} imagetitle={items.title}><img className={`rounded-lg`} key={items.id} src={items.img[0]} alt={items.title}></img></div>)}
           </div>
         </div>
         <div className={`${classes.sliderParent} relative max-lg:top-[-2rem]`}>
@@ -143,34 +126,18 @@ const Products = (props) => {
     <div className={`${classes.images} w-[15%] overflow-y-scroll bg-[#6de0f7] text-center text-white mt-[-1rem] max-lg:hidden flex flex-col gap-8 items-center `}>
           {/* <div className='w-full'>call to place order</div> */}
           <div className='flex h-[400px] pt-[9rem]  flex-col  gap-4 items-center justify-center w-[72%] mt-5'>
-          {sideImages.map(items=><div className={classes.imageBox} imageTitle={items.title}><img className={`rounded-lg`} key={items.id} src={items.img[0]} alt={items.title}></img></div>)}
+          {sideImages.map(items=><div key={items.id} className={classes.imageBox} imagetitle={items.title}><img className={`rounded-lg`} key={items.id} src={items.img[0]} alt={items.title}></img></div>)}
           </div>
         </div>
-    
-    {/* <div className='w-[15%] flex flex-col gap-4 border-4 rounded-md border-black items-center bg-orange-400 text-center text-white mt-[-1rem] max-lg:hidden'>
-      <div className={`${classes.leftSideFirstBox} pt-3 flex flex-col gap-4 items-center`}>
-          <CallingIC/>
-          <div className='w-full text-3xl font-bold '>call to place order on</div>
-          <div className='w-full text-black text-4xl font-bold font-serif'>+233-5454 11926</div>
-        </div>
-      <div className='flex flex-col gap-4 items-center'>
-          <CallingIC/>
-          <div className='w-full text-3xl font-bold'>call to place orders on</div>
-          <div className='w-full text-black text-4xl font-bold font-serif'>+233-5454 11926</div>
-        </div>
-
-      </div> */}
     </div>}
-     {/* </div>  */}
      <div className='md:hidden'>
 
      <Filter/>
      </div>
      <div className={`${classes.imagesSmallscreen} w-[100%] max-lg:overflow-x-scroll bg-[#6de0f7] text-center text-white
        mt-[-1rem] lg:hidden flex gap-8 items-center max-lg:mt-[-2rem] max-md:mt-0`}>
-          {/* <div className='w-full'>call to place order</div> */}
           <div className={`${classes.imageBoxSmallD}  flex gap-4 items-center justify-center h-[8rem] ml-2 mr-2  my-5 `}>
-          {sideImages.map(items=><div className={classes.imageBox} imageTitle={items.title}><img className={`rounded-lg max-md:h-[6.8rem] max-lg:h-[8rem] w-full`} key={items.id} src={items.img[0]} alt={items.title}></img></div>)}
+          {sideImages.map(items=><div key={items.id} className={classes.imageBox} imagetitle={items.title}><img className={`rounded-lg max-md:h-[6.8rem] max-lg:h-[8rem] w-full`} key={items.id} src={items.img[0]} alt={items.title}></img></div>)}
           </div>
         </div>
      <div className='text-center mt-1 bg-slate-500 text-white py-4 text-xl italic mb-6 font-mono border-4 border-l-0 border-r-0 border-dashed border-blue-200'>

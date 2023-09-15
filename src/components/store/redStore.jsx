@@ -42,15 +42,6 @@ const initialSearchTerm={
     category:null
 }
 
-// const searchTermSlice=createSlice({
-// name:'Search',
-// initialSearchTerm,
-// reducers:{
-//     receieveSearchTerm(state,action){
-//  state.searchValue=action.payload
-//     }
-// }
-// })
 
 const searchReducer=(state,action)=>{
    switch(action.type){
