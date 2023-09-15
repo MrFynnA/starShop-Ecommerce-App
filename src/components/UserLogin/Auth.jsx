@@ -2,7 +2,7 @@ import React,{useState} from "react"
 import AuthForm from "./AuthForm"
 import classes from './Auth.module.css'
 import Card from '../UI/Card'
-import { useSearchParams,redirect,useNavigate } from "react-router-dom"
+import { useSearchParams} from "react-router-dom"
 import { auth } from "../../config/firebse-config"
 import {createUserWithEmailAndPassword} from 'firebase/auth'
 import {useDispatch} from 'react-redux'
@@ -11,7 +11,6 @@ import { signUpAction } from "../store/slices/authSlice"
 const AuthSection=()=>{
       const[searchParam]=useSearchParams()
       const isLogin=searchParam.get('sess')==='login'
-      const navigate=useNavigate()
       const dispatch=useDispatch()
       const[isLoading,setIsLoading]=useState(false)
 
