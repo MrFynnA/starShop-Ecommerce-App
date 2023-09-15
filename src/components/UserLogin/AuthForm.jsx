@@ -278,6 +278,8 @@ const submitData=()=>{
     }
     const passWordEqual=checkPasswordEquality(userData.password,userData.repassword)
     if(isLogin || !passWordEqual){
+    dispatch(signUpAction.geterrorMessage(null))
+    setReturnedErrorMessage('')
           return
         }
 
