@@ -34,10 +34,11 @@
 }
 
 @media (max-width:540px) {
-    .input {
+    .search-input input {
         font-size: 13px !important;
+        margin-left: 0.2rem;
     }
     .search-input input::placeholder {
-        font-size: 13px;
+        font-size: 11px;
     }
 }

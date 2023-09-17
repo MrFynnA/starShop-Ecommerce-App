@@ -41,7 +41,7 @@ if(userMenu){
       </main>
 <Footer/>
 </div>
-{!session && <div className='bg-black relative  h-[60vh] max-md:h-[90vh] mb-!0 text-white mt-10 pt-4'>
+{!session && <div className='bg-black relative  h-[60vh] max-md:h-[90vh] mb-!0 text-white mt-10 pt-4 max-md:pb-[10rem]'>
   <div className='bg-[#00c2e9] h-[20%] mb-4'></div>
   <div>
   <div className={'text-4xl font-bold p-4 text-center'}>StarShopify</div>
