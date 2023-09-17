@@ -1,2 +1,2 @@
-# starShopify-Ecommerce-App
+# starShop-Ecommerce-App
 E-commerce web App
