@@ -1,10 +1,10 @@
-            .product {
+            /* .product {
                 display: flex;
                 flex-direction: column;
                 margin-top: 1rem;
                 width: 100%;
                 overflow: hidden;
-            }
+            } */
             
             .product h2 {
                 color: rgb(43, 43, 43);
@@ -46,20 +46,20 @@
             }
             
             .product ul {
-                display: flex!important;
+                /* display: flex!important;
                 list-style: none;
                 width: 100%!important;
                 justify-content: center;
                 flex-wrap: wrap!important;
-                position: relative;
+                position: relative; */
                 /* right: 1.1rem */
                 /* align-items: center; */
             }
             
             @media(max-width:840px) {
-                .product ul {
+                /* .product ul {
                     flex-direction: row!important;
-                }
+                } */
             }
             
             .errorMessBox {

@@ -38,22 +38,41 @@ let actions=<button onClick={sendItems}>Add to Cart</button>
   }
 
   return (
-    <Card className={classes.itemMain}>
-        <div className={`${classes.item} ${particularCartItems.length>0&&classes['remove-p']}`}>
+    // <Card className={classes.itemMain}>
+    //     <div className={`${classes.item} ${particularCartItems.length>0&&classes['remove-p']}`}>
+    //     <header>
+    //       <h3>{title}</h3>
+    //       <div className={classes.price}>${price.toFixed(2)}</div>
+    //     </header>
+    //     <div className={classes.desAction}>
+    //       <img src={image} alt={title}/>
+    //     <p>{description}</p>
+    //     <div className={classes.actions}>
+    //       {actions}
+    //     </div>
+    //     </div>
+      
+    // </div>
+    //   </Card>
+    <>
+       <div className='bg-[white] p-4 rounded-lg'>
+
+        <div className={`w-[15rem] ${particularCartItems.length>0&&classes['remove-p']}`}>
         <header>
           <h3>{title}</h3>
-          <div className={classes.price}>${price.toFixed(2)}</div>
         </header>
         <div className={classes.desAction}>
           <img src={image} alt={title}/>
-        <p>{description}</p>
+          <div className={classes.price}>${price.toFixed(2)}</div>
+        <p>{`${description.slice(0,25)}....`}</p>
         <div className={classes.actions}>
           {actions}
         </div>
         </div>
-      
     </div>
-      </Card>
+       </div>
+    </>
+    
   );
 };
 
