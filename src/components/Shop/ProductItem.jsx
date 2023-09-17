@@ -58,7 +58,7 @@ let actions=<button onClick={sendItems}>Add to Cart</button>
        <div className={`${classes.itemCard} bg-[white] relative flex flex-col justify-end p-4 rounded-lg border-[3px] max-md:border-4 max-md:border-[#00c2e9] border-dashed border-[black] hover:p-6`}>
 
         <div className={`w-[15rem] ${particularCartItems.length>0&&classes['remove-p']};`}>
-        <header>
+        <header className='font-sans font-bold'>
           <h3>{title}</h3>
         </header>
         <div className='flex flex-col mt-10 gap-3 items-start justify-end'>

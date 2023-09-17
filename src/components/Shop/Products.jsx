@@ -95,21 +95,21 @@ const Products = (props) => {
     cartItems={cartItems}
   />)
 
-  // if(products.length===0){
-  //   items=<div className={classes.noSearchElements}>
-  //       <BinoSearchIcon/>
-  //       <div className={classes.nosearchFound}>
-  //       <NoSearchIcon/>
-  //       {(searchTerm!==null || category!==null) &&<h3 style={{textAlign:'center'}}>sorry there are no results {searchTerm &&`for "${searchTerm.slice(0,5)}${searchTerm.length>5 ? '...':''}"`}</h3>}
-  //       {searchTerm===null && category===null && <p className={classes.interneterrorMsg}>Please check Internet Connection</p>}
-  //       </div>
-  //       {searchTerm!==null || category!==null ?<a href='/'><button>Back to Home</button></a>:<p style={{textAlign:'center'}}><button className={classes.tryAgainBtn} onClick={props.onTryAgain}>Try Again</button></p>}
-  //       </div>
-  // }
-  // <h2>Loading</h2>
-  // if(props.isLoading){
-  //   items=<div className={`${classes.Loading} ${classes.spin}`}><LoadingIcon/></div>
-  // }
+  if(products.length===0){
+    items=<div className={classes.noSearchElements}>
+        <BinoSearchIcon/>
+        <div className={classes.nosearchFound}>
+        <NoSearchIcon/>
+        {(searchTerm!==null || category!==null) &&<h3 style={{textAlign:'center'}}>sorry there are no results {searchTerm &&`for "${searchTerm.slice(0,5)}${searchTerm.length>5 ? '...':''}"`}</h3>}
+        {searchTerm===null && category===null && <p className={classes.interneterrorMsg}>Please check Internet Connection</p>}
+        </div>
+        {searchTerm!==null || category!==null ?<a href='/'><button>Back to Home</button></a>:<p style={{textAlign:'center'}}><button className={classes.tryAgainBtn} onClick={props.onTryAgain}>Try Again</button></p>}
+        </div>
+  }
+  <h2>Loading</h2>
+  if(props.isLoading){
+    items=<div className={`${classes.Loading} ${classes.spin}`}><LoadingIcon/></div>
+  }
  
   
   return (
