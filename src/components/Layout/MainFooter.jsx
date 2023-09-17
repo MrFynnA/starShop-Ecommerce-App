@@ -3,7 +3,7 @@ import classes from './MainFooter.module.css'
 const Footer=()=>{
     return(
         <footer className={classes.header}>
-        <div className={classes.footerSiteTitle}><h2>StarShopify</h2></div>
+        <div className={classes.footerSiteTitle}><h2>StarShop</h2></div>
         <nav>
           <ul>
       

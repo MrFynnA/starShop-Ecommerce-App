@@ -42,7 +42,7 @@ const MainHeader = (props) => {
       <div onClick={()=>{
         navigate('/')
         dispatch({type:searchAction.UPDATECategory,payload:null})
-    }} className={`text-4xl font-bold ${classes.SiteTitle}`}><h1>StarShopify</h1></div>
+    }} className={`text-4xl font-bold ${classes.SiteTitle}`}><h1>StarShop</h1></div>
       <nav className='relative max-md:mr-6'>
         <ul className='flex items-center gap-5'>
           <span className={classes.LoginActions}> 

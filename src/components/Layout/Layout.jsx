@@ -54,7 +54,7 @@ if(userMenu){
     <li><Link>Call to place order</Link></li>
   </ul>
   <ul className='px-4 flex flex-col max-md:items-center items-start justify-center gap-2'>
-    <div className='font-bold text-lg mb-2 border-b-2'>About StarShopify</div>
+    <div className='font-bold text-lg mb-2 border-b-2'>About StarShop</div>
     <li><Link>About Us</Link></li>
     <li><Link>Contact Us</Link></li>
     <li><Link>Terms and conditions</Link></li>

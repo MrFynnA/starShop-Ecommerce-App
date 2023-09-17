@@ -38,13 +38,13 @@ const AuthSection=()=>{
 return (
     <React.Fragment>
         <div className={classes.loginBox}>
-        <h2 style={{textAlign:'center'}} className="text-2xl font-bold tracking-[spacing]">Get the coolest Prices of your favorite products on Star Shopify and enjoy AmazinG OFFERS.</h2>
+        <h2 style={{textAlign:'center'}} className="text-2xl font-bold tracking-[spacing]">Get the coolest Prices of your favorite products on Star Shop and enjoy AmazinG OFFERS.</h2>
         <Card 
         minwidth={'40%'} 
         backgroundcolor={'rgb(0, 137, 164)'} 
         borderradius={'10px'}
         className={classes.MainForm}>
-            <h3 className={classes.loginTitle}>STAR SHOPIFY <sub className="font-mono font-bold text-lg">{isLogin?'Login':'SignUp'}</sub></h3>
+            <h3 className={classes.loginTitle}>STAR SHOP <sub className="font-mono font-bold text-lg">{isLogin?'Login':'SignUp'}</sub></h3>
     <AuthForm userCred={onuserAuthOperation} reponseLoading={isLoading}/>
         </Card>
         </div>
