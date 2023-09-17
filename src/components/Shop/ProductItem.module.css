@@ -102,3 +102,7 @@
     border-radius: 5px;
     color: rgb(255, 255, 255);
 } */
+
+.itemCard {
+    transition: 0.5s;
+}

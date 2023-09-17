@@ -34,7 +34,7 @@ onAddItem(cartItemsToReducer)
  }
 let actions=<button onClick={sendItems}>Add to Cart</button>
   if(particularCartItems.length>0){
-    actions=<div className={classes.cartChecked}><CartIconCheck/><h4>item added to cart</h4><div className={classes.removeCrt}><CartRemoveIcon onClick={removeItemTotal}/></div></div>
+    actions=<div className='flex items-center justify-center gap-2 border-2 p-1 rounded-md border-orange-400 px-2'><CartIconCheck/><h4 className='text-[13px]'>item added to cart</h4><div className={classes.removeCrt}><CartRemoveIcon onClick={removeItemTotal}/></div></div>
   }
 
   return (
@@ -55,17 +55,17 @@ let actions=<button onClick={sendItems}>Add to Cart</button>
     // </div>
     //   </Card>
     <>
-       <div className='bg-[white] p-4 rounded-lg'>
+       <div className={`${classes.itemCard} bg-[white] relative flex flex-col justify-end p-4 rounded-lg border-4 border-dashed border-[#00c2e9] hover:p-6`}>
 
-        <div className={`w-[15rem] ${particularCartItems.length>0&&classes['remove-p']}`}>
+        <div className={`w-[15rem] ${particularCartItems.length>0&&classes['remove-p']};`}>
         <header>
           <h3>{title}</h3>
         </header>
-        <div className={classes.desAction}>
-          <img src={image} alt={title}/>
-          <div className={classes.price}>${price.toFixed(2)}</div>
+        <div className='flex flex-col mt-10 gap-3 items-start justify-end'>
+          <img className='h-25 w-24'  src={image} alt={title}/>
+          <div className={`${classes.price} font-extrabold bg-black text-white p-1 rounded-lg`}>${price.toFixed(2)}</div>
         <p>{`${description.slice(0,25)}....`}</p>
-        <div className={classes.actions}>
+        <div className={`${classes.actions} mb-0`}>
           {actions}
         </div>
         </div>

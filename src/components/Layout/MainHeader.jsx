@@ -47,7 +47,7 @@ const MainHeader = (props) => {
         <ul className='flex items-center gap-5'>
           <span className={classes.LoginActions}> 
           <li>
-          {!receivedTokenStatus && <button className='border-none hover:bg-transparent text-white right-[1rem] relative top-2 font-bold w-10 max-md:text-sm max-md:right-[1rem] outline-none' onClick={triggerCloseFinalForm}>LOGIN</button>}
+          {!receivedTokenStatus && <button className='border-none hover:bg-transparent text-white right-[1rem] relative top-2 font-bold w-10 max-md:text-sm max-md:right-[1rem] !z-10 outline-none' onClick={triggerCloseFinalForm}>LOGIN</button>}
 
           {receivedTokenStatus && <UserAccount/>}
 

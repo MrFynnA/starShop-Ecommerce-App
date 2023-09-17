@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 const SearchActions=()=>{
 return (
 <React.Fragment>
-    <div className='mb-4 relative mt-0'>
+    <div className='mb-4 relative mt-4'>
         
     <div className={`${classes.SearchActions} bg-black  relative`}>
         <SubHeader/>

@@ -16,7 +16,7 @@ const useHttps=(applyData)=>{
             }
             if(searchTerm===null && category===null)
             {
-                url+=`?limit=96`
+                url+=`?limit=100`
 
             }
             if(category){
