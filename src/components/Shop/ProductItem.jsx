@@ -55,7 +55,7 @@ let actions=<button onClick={sendItems}>Add to Cart</button>
     // </div>
     //   </Card>
     <>
-       <div className={`${classes.itemCard} bg-[white] relative flex flex-col justify-end p-4 rounded-lg border-4 border-dashed border-[#00c2e9] hover:p-6`}>
+       <div className={`${classes.itemCard} bg-[white] relative flex flex-col justify-end p-4 rounded-lg border-[3px] border-dashed border-[black] hover:p-6`}>
 
         <div className={`w-[15rem] ${particularCartItems.length>0&&classes['remove-p']};`}>
         <header>
