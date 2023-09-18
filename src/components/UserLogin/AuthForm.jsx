@@ -287,6 +287,8 @@ const submitData=()=>{
 
 }
 
+const backToLogin=()=>navigate('/session?sess=login')
+
 
 return(
     <>
@@ -331,8 +333,9 @@ return(
         
         }
         </div>
-        <div className={`${styles.actions} ${!isLogin && styles.actionSpace}`}>
+        <div className={`${styles.actions} ${!isLogin && styles.actionSpace} flex flex-center items-center gap-4`}>
          <MyButton onClick={moveToNextForm} disabled={submitting} backgroundcolor={'black'} textcolor={'white'} type={'submit'}>{buttonText}</MyButton>
+         {!isLogin && <MyButton onClick={backToLogin} backgroundcolor={'black'} textcolor={'white'} type={'button'}>BACK</MyButton>}
         </div>
         <div className='flex max-md:!flex-col items-center max-md:text-sm justify-center relative top-4 gap-[0.2rem]'>
             {isLogin && <div>Don't have an account yet?</div>}

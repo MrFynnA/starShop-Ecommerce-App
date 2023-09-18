@@ -9,6 +9,7 @@ import {useDispatch,useSelector} from 'react-redux'
 import { uiActions } from '../store/slices/UISlice';
 import { useSearchParams } from 'react-router-dom';
 
+
 const Layout = (props) => {
 const token=useLoaderData()
 const dispatch=useDispatch()
@@ -33,7 +34,7 @@ if(userMenu){
   <div className={classes.topMessage}>
     <span className={classes.messageTop}><Offertag/> JOIN AMAZING OFFER,  Get 20% OFF 10 and above items purchase</span>
     </div>
-      <MainHeader tokenId={token}/>
+      {!session && <MainHeader tokenId={token}/>}
    
       <main>
         
