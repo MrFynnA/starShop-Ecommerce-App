@@ -291,7 +291,7 @@ const submitData=()=>{
 return(
     <>
     <Form method='post' onSubmit={submitData}>
-        <div className={styles.overralLoginForm}>
+        <div className={`${styles.overralLoginForm}`}>
         
             {!nexForm && <div className={`${styles.innerLoginForm} ${slideRight && styles.slideRight}`}>
             {wrongCredentials && <div className='text-center font-bold italic text-[12px] text-red-600 border-2 border-red-300'>{data.message}</div>}
