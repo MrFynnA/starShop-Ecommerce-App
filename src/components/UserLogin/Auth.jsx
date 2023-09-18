@@ -38,7 +38,7 @@ const AuthSection=()=>{
 return (
     <React.Fragment>
         <div className={`${classes.loginBox}  max-md:pb-[10rem]`}>
-        <h2 style={{textAlign:'center'}} className="text-2xl font-bold tracking-[spacing]">Get the coolest Prices of your favorite products on Star Shop and enjoy AmazinG OFFERS.</h2>
+        <h2 style={{textAlign:'center'}} className="text-2xl font-bold mb-[-1rem] tracking-[spacing]">Get the coolest Prices of your favorite products on Star Shop and enjoy AmazinG OFFERS.</h2>
         <Card 
         minwidth={'40%'} 
         backgroundcolor={'rgb(0, 137, 164)'} 
