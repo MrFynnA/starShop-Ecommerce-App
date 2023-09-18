@@ -68,9 +68,10 @@ const Cart = (props) => {
 
   
   return (
+    ReactDom.createPortal(
 <React.Fragment>
  <BackDrop onClick={()=>dispatch(CartVisibleAction.closeCart())}/>
- {ReactDom.createPortal(<CartCover className={`${classes.cart} ${cartItems.length===0 && classes.cartHeight}`}>
+   <CartCover className={`${classes.cart} ${cartItems.length===0 && classes.cartHeight}`}>
     <div className={classes.cartHeadItem}>
     <h2>Your Shopping Cart</h2>
       <h2 className={`${classes.disCount} font-mono font-bold`}>{disCountMessage}</h2>
@@ -92,9 +93,9 @@ const Cart = (props) => {
   {displayCheckOut&&<button onClick={goToLogin}>CHECKOUT</button>}
 </div>
  <h2 className={classes.disCountonMob}>{disCountMessage}</h2>
-    </CartCover>,document.getElementById('modal'))}
-   
-    </React.Fragment>
+    </CartCover>
+    </React.Fragment>,document.getElementById('modal')
+    )
   );
 };
 
