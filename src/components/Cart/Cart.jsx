@@ -81,7 +81,7 @@ const Cart = (props) => {
 <div className={classes.cartTotalItems}>
   <div className={classes.cartTotal}>
     <div className={classes.totalCartPrice}>
-    <h2>Total:</h2>
+    <h2 className='max-md:!text-sm font-bold'>Total:</h2>
 <div><h2 className={classes.totalA}> ${totalAfterDisCount!==null?totalAfterDisCount.toFixed(2):totalAmount.toFixed(2)}</h2>
 </div>
 
@@ -89,8 +89,8 @@ const Cart = (props) => {
     </div>
 
   </div>
-  {displayCheckOut&& validDisCount &&(<button className={classes.applyDiscBtn} onClick={onApplyDiscount} disabled={disCountMessage!=='' || totalAfterDisCount!==null}>APPLY DISCOUNT</button>)}
-  {displayCheckOut&&<button onClick={goToLogin}>CHECKOUT</button>}
+  {displayCheckOut&& validDisCount &&(<button className={`${classes.applyDiscBtn} max-md:!px-3`} onClick={onApplyDiscount} disabled={disCountMessage!=='' || totalAfterDisCount!==null}>APPLY DISCOUNT</button>)}
+  {displayCheckOut&&<button className='max-md:!w-[30%] max-md:px-[0.3rem] !text-center' onClick={goToLogin}>CHECKOUT</button>}
 </div>
  <h2 className={classes.disCountonMob}>{disCountMessage}</h2>
     </CartCover>
