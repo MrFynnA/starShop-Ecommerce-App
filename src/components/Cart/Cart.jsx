@@ -9,6 +9,7 @@ import BackDrop from '../UI/BackDrop';
 import { CartVisibleAction } from '../store/redStore';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ReactDom from 'react-dom';
 
 const Cart = (props) => {
   const[disCountMessage,setDisCountMessage]=useState('')
@@ -69,7 +70,7 @@ const Cart = (props) => {
   return (
 <React.Fragment>
  <BackDrop onClick={()=>dispatch(CartVisibleAction.closeCart())}/>
-   <CartCover className={`${classes.cart} ${cartItems.length===0 && classes.cartHeight}`}>
+ {ReactDom.createPortal(<CartCover className={`${classes.cart} ${cartItems.length===0 && classes.cartHeight}`}>
     <div className={classes.cartHeadItem}>
     <h2>Your Shopping Cart</h2>
       <h2 className={`${classes.disCount} font-mono font-bold`}>{disCountMessage}</h2>
@@ -91,7 +92,8 @@ const Cart = (props) => {
   {displayCheckOut&&<button onClick={goToLogin}>CHECKOUT</button>}
 </div>
  <h2 className={classes.disCountonMob}>{disCountMessage}</h2>
-    </CartCover>
+    </CartCover>,document.getElementById('modal'))}
+   
     </React.Fragment>
   );
 };

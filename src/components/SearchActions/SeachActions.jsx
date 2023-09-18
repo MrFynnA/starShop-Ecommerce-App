@@ -18,7 +18,7 @@ return (
 </div>
         <SearchForm inputItems={{
             type:'text',
-            placeholder:'search what you want...',
+            placeholder:'what are you looking for...',
             id:'searchBox'
             
         }}/>
