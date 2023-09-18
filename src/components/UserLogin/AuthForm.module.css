@@ -51,7 +51,7 @@
                                 border: 2px solid rgb(53, 161, 255);
                                 border-style: none;
                                 outline: none;
-                                font-size: 0.9rem;
+                                font-size: 16px !important;
                             }
                             
                             .actions {
