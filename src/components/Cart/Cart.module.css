@@ -138,11 +138,12 @@
                                 right: 0.5rem;
                             }
                             .totalA {
-                                font-size: 10px!important;
+                                font-size: 12px!important;
                                 font-weight: 900;
                                 font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
                                 position: relative;
-                                top: 3px
+                                top: 3px;
+                                font-weight: 900!important;
                             }
                             .cartTotal {
                                 flex-direction: column;
