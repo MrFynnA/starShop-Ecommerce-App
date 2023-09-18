@@ -122,7 +122,6 @@ if(cartChanged===true){
   ])
 
 
-
   return (
     <RouterProvider router={router}/>
   // <Layout>

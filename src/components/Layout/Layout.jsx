@@ -44,7 +44,7 @@ if(userMenu){
 {!session && <div className='bg-black relative  h-[60vh] max-md:h-[90vh] mb-!0 text-white mt-10 pt-4 max-md:pb-[10rem]'>
   <div className='bg-[#00c2e9] h-[20%] mb-4'></div>
   <div>
-  <div className={'text-4xl font-bold p-4 text-center'}>StarShopify</div>
+  <div className={'text-4xl font-bold p-4 text-center'}>StarShop</div>
   <div className={`${classes.mainlinkBox} flex max-md:flex-col max-md:gap-10 items-center justify-center gap-60 relative top-10`}>
 
   <ul className='px-4 flex flex-col max-md:items-center items-start justify-center gap-2'>
