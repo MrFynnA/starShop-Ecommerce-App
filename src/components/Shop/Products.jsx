@@ -138,19 +138,25 @@ const Products = (props) => {
           </div>
         </div>
     </div>}
-     <div className='md:hidden'>
+     {(searchTerm==='' || searchTerm===null) && <div className='md:hidden'>
 
      <Filter/>
-     </div>
+     </div>}
   {(searchTerm==='' || searchTerm===null) && (category==='' || category===null) &&   <div className={`${classes.imagesSmallscreen} w-[100%] max-lg:overflow-x-scroll bg-[#6de0f7] text-center text-white
        mt-[-1rem] lg:hidden flex gap-8 items-center max-lg:mt-[-2rem] max-md:mt-0`}>
           <div className={`${classes.imageBoxSmallD}  flex gap-4 items-center justify-center h-[8rem] ml-2 mr-2  my-5 `}>
           {sideImages.map(items=><div key={items.id} className={classes.imageBox} imagetitle={items.title}><img className={`rounded-lg max-md:h-[6.8rem] max-lg:h-[8rem] w-full`} key={items.id} src={items.img[0]} alt={items.title}></img></div>)}
           </div>
         </div>}
-     <div className='text-center mt-1 bg-slate-500 text-white py-4 text-xl italic mb-6 font-mono border-4 border-l-0 border-r-0 border-dashed border-blue-200'>
+        <>
+        <div className='text-center mt-1 max-md:hidden bg-slate-500 text-white py-4 text-xl italic mb-6 font-mono border-4 border-l-0 border-r-0 border-dashed border-blue-200'>
       <div className='max-md:text-sm'>Happy Shopping....Shop here and get Amazing discounts!</div>
      </div>
+    {(searchTerm==='' || searchTerm===null) &&  <div className='text-center mt-1 md:hidden bg-slate-500 text-white py-4 text-xl italic mb-6 font-mono border-4 border-l-0 border-r-0 border-dashed border-blue-200'>
+      <div className='max-md:text-sm'>Happy Shopping....Shop here and get Amazing discounts!</div>
+     </div>}
+        </>
+   
  <ul className='flex justify-center'>
   <div className='flex flex-wrap justify-center gap-5'>
   {items}

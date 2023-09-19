@@ -438,7 +438,6 @@ if(!correctEmail || !correctPassword ){
     return null
    }else{
     setTimeout(()=>{
-
         return redirect('/')
     },10000)
    }
