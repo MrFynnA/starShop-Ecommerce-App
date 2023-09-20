@@ -2,7 +2,7 @@ import styles from './AuthForm.module.css'
 import MyButton from '../UI/Button'
 import { Visible } from '../UI/VisibleEyes'
 import { NotVisible } from '../UI/VisibleEyes'
-import {useState } from 'react'
+import {useRef, useState } from 'react'
 import {
     useSearchParams,
     useActionData,
@@ -61,6 +61,12 @@ const AuthForm=(props)=>{
     const wrongCredentials=data && data.errorCred
     const resLoading=props.reponseLoading
 
+    const errorRef=useRef(null)
+
+
+    if(errorMessage || emailError || wrongCredentials){
+        errorRef.current?.scollIntoView({behaviour:'smooth'})
+    }
     
     const submitting=navigation.state==='submitting'
 
@@ -292,7 +298,7 @@ const backToLogin=()=>navigate('/session?sess=login')
 
 return(
     <>
-    <Form method='post' onSubmit={submitData}>
+    <Form method='post' ref={errorRef} onSubmit={submitData}>
         <div className={`${styles.overralLoginForm}`}>
         
             {!nexForm && <div className={`${styles.innerLoginForm} ${slideRight && styles.slideRight}`}>
