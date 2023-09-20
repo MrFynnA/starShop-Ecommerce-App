@@ -65,7 +65,7 @@ const AuthForm=(props)=>{
 
 
     if(errorMessage || emailError || wrongCredentials){
-        errorRef.current?.scollIntoView({behaviour:'smooth'})
+        errorRef.current?.scrollIntoView({behaviour:'smooth'})
     }
     
     const submitting=navigation.state==='submitting'
