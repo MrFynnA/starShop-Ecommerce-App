@@ -112,7 +112,7 @@
                             }
                             
                             .submitText {
-                                animation: fadeInRight 0.4s;
+                                animation: fadeInRight 0.4s !important;
                                 animation-iteration-count: infinite;
                                 position: absolute !important;
                             }
