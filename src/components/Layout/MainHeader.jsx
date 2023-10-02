@@ -2,13 +2,13 @@ import CartButton from '../Cart/CartButton';
 import classes from './MainHeader.module.css';
 import AccountIcon from '../UI/Account-icon';
 import { Link,useNavigate } from 'react-router-dom';
-import { Form } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
 import { signUpAction } from '../store/slices/authSlice';
 import UserAccount from '../Account/userAccount';
 import { uiActions } from '../store/slices/UISlice';
 import { useEffect } from 'react';
 import { searchAction } from '../store/redStore';
+
 
 
 const MainHeader = (props) => {
